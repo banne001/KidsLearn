@@ -1,1 +1,2 @@
 # KidsLearn
+A website that helps kids learn basics such as math, shapes, and fruits. Depending on the subject that the user will pick it prompts questions to help further develop understanding of the subject. If the user signs up they are able to see the progress they have made per day. Additionally, they will be able to view the overall progress that they have made. If the user would like to learn additional subjects such as letters and animals they would have to be a pro-user. 
