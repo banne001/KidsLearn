@@ -1,0 +1,12 @@
+{
+  "name": "blezylsa/328/KidsLearn",
+  "authors": [
+    {
+      "name": "Blezyl Santos, Sarah Mehri",
+      "email": "bsantos4@mail.greenriver.edu"
+    }
+  ],
+  "require": {
+    "bcosca/fatfree-core": "dev-master"
+  }
+}

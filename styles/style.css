@@ -1,0 +1,52 @@
+body{
+    background-image: url('../images/bg.png');
+    background-size: 100%;
+    color: white !important;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: large;
+}
+.navbar{
+    background: #EBACBD;
+}
+
+.button{
+    padding: 20px 100px;
+}
+
+.pink{
+    background: #EBACBD;
+}
+.pink:hover{
+    background: white;
+}
+
+.blue{
+    background: #092E6D;
+}
+.blue:hover{
+    background: white;
+}
+.btn{
+    color: white;
+    margin: auto;
+}
+
+.links p{
+    border: 2px solid black;
+    padding: 40px;
+    border-radius: 25px;
+    width: 70%;
+    text-align: center;
+    margin: 20px auto;
+    height: 100%;
+}
+.links {
+    text-decoration: none;
+}
+.links:hover{
+    color: black;
+    text-decoration:none;
+}
+a{
+    color: white;
+}
