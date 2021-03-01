@@ -15,9 +15,9 @@
     <nav class="navbar navbar-expand-sm" >
         <div class="container">
             <!-- logo -->
-            <a href="/" class="navbar-brand text-white" id="logo"><strong>Kids Learn</strong></a>
+            <a href="{{@BASE}}" class="navbar-brand text-white" id="logo"><strong>Kids Learn</strong></a>
             <!-- Menu Bar -->
-            <button class="navbar-toggler" type="button"
+            <button class="navbar-toggler navbar-dark" type="button"
                     data-toggle="collapse" data-target="#myTogglerNav"
                     aria-controls="myTogglerNav"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -27,22 +27,28 @@
                 <div class="navbar-nav ml-auto">
                     <a class="nav-item nav-link text-white" href="{{@BASE}}">Home</a>
                     <a class="nav-item nav-link text-white" href="learn">Learn</a>
-                    <a class="nav-item nav-link text-white" href="sign">Sign In</a>
+                    <a class="nav-item nav-link text-white" href="signIn">Sign In</a>
                 </div><!-- navbar -->
             </div><!-- collapse -->
         </div><!-- container -->
     </nav>
 
 
-    <div id="animal">
-
+    <div class="container">
+        <!-- Use Repeat tag and get info from database-->
+        <div class="row">
+            <div class="col-3  col-sm-5 ">
+                <img src="" alt="">
+            </div>
+            <div class="col-9 col-sm-7">
+                <h2>Name of Animal</h2>
+                <h2>Description:</h2>
+            </div>
+        </div>
     </div>
 
-    <div id="answer">
-
-    </div>
     <div>
-        <a href="learn" class="button links"><p class="blue">Next</p></a>
+        <a href="{{ @BASE }}" class="button links"><p class="blue">Go Home</p></a>
     </div>
 
 

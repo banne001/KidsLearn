@@ -19,9 +19,9 @@ Version 1.0
     <nav class="navbar navbar-expand-sm" >
         <div class="container">
             <!-- logo -->
-            <a href="/" class="navbar-brand text-white" id="logo"><strong>Kids Learn</strong></a>
+            <a href="{{ @BASE }}" class="navbar-brand text-white" id="logo"><strong>Kids Learn</strong></a>
             <!-- Menu Bar -->
-            <button class="navbar-toggler" type="button"
+            <button class="navbar-toggler navbar-dark" type="button"
                     data-toggle="collapse" data-target="#myTogglerNav"
                     aria-controls="myTogglerNav"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -53,9 +53,10 @@ Version 1.0
 
     <!-- Button -->
     <div>
-        <a href="learn" class="button links"><p class="blue">Learn Shapes!</p></a>
-        <a href="learn" class="button links"><p class="pink">Learn Numbers!</p></a>
-        <a href="learn" class="button links"><p class="blue">Learn Animals!</p></a>
+        <a href="shapes" class="button links"><p class="blue">Learn Shapes!</p></a>
+        <a href="fruits" class="button links"><p class="pink">Learn Fruits!</p></a>
+        <a href="animals" class="button links"><p class="blue">Learn Animals!</p></a>
+        <a href="{{@BASE}}" class="button links"><p class="gold">Create Something!</p></a>
     </div>
 
 
