@@ -45,38 +45,32 @@
             </div>
         </div><!-- container -->
     </nav>
-
-
-    <div class="container">
-        <!-- Use Repeat tag and get info from database-->
+    <div class="container gold"><h1>Create </h1></div>
+    <div class="container grey p-5">
         <div class="row">
-            <div class="col-3  col-sm-5 ">
-                <img src="" alt="">
+            <div class="col-4">
+
             </div>
-            <div class="col-9 col-sm-7">
-                <h2>Name of Animal</h2>
+            <div class="col-8">
+                <h2>Name: </h2>
+                <br>
+                <p>{{ @SESSION.creation->getName() }}</p>
                 <h2>Description:</h2>
+                <br>
+                <p>{{ @SESSION.creation->getDescription() }}</p>
             </div>
         </div>
-    </div>
 
-    <div>
-        <a href="{{ @BASE }}" class="button links"><p class="blue">Go Home</p></a>
+        <a href="createFinish">NEXT</a>
     </div>
 
 
 
 </div>
-<br><br>
-<div class="justify-content-center align-self-center text-center d-flex">
-    <br>
-    <h6>@Sezyl</h6>
-</div>
-<br>
-
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<script src="scripts/canvas.js"></script>
 
 </body>
 </html>

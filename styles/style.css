@@ -36,7 +36,36 @@ body{
 .gold:hover{
     background: gold;
 }
-
+.color{
+    width: 20px;
+    height: 20px;
+}
+#green{
+    background: green;
+}
+#blue{
+    background: blue;
+}
+#red{
+    background: red;
+}
+#yellow{
+    background: yellow;
+}
+#orange{
+     background: orange;
+ }
+#black{
+    background: black;
+}
+#white{
+    background: white;
+    border: 1px black solid;
+}
+#can{
+    background: white;
+    border: 1px black solid;
+}
 .btn{
     color: white;
     margin: auto;

@@ -15,21 +15,34 @@
     <nav class="navbar navbar-expand-sm" >
         <div class="container">
             <!-- logo -->
-            <a href="/" class="navbar-brand text-white" id="logo"><strong>Kids Learn</strong></a>
+            <a href="{{ @BASE }}" class="navbar-brand text-white" id="logo"><strong>Kids Learn</strong></a>
             <!-- Menu Bar -->
-            <button class="navbar-toggler" type="button"
+            <button class="navbar-toggler navbar-dark" type="button"
                     data-toggle="collapse" data-target="#myTogglerNav"
                     aria-controls="myTogglerNav"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="myTogglerNav">
-                <div class="navbar-nav ml-auto">
-                    <a class="nav-item nav-link text-white" href="{{@BASE}}">Home</a>
-                    <a class="nav-item nav-link text-white" href="learn">Learn</a>
-                    <a class="nav-item nav-link text-white" href="signIn">Sign In</a>
-                </div><!-- navbar -->
-            </div><!-- collapse -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{@BASE}}">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="{{@BASE}}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Learn!
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="shapes">Learn Shapes</a>
+                            <a class="dropdown-item" href="animals">Learn Animals</a>
+                            <a class="dropdown-item" href="fruits">Learn Fruits</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="signIn">Sign In</a>
+                    </li>
+                </ul>
+            </div>
         </div><!-- container -->
     </nav>
 
@@ -37,31 +50,55 @@
     <div class="mx-auto mt-5 p-5 grey w-50 w-sm-100">
         <h1>Sign Up!</h1>
         <hr>
-        <form action="">
+        <form action="#" method="post">
             <div class="form-group">
                 <label for="username">Username</label>
-                <input type="text" class="form-control" name="username" id="username" aria-describedby="username" placeholder="Enter Username">
+                <input type="text" class="form-control" name="username" id="username" aria-describedby="username" placeholder="Enter Username" value="{{ @username }}">
+                <span class="text-danger"><check if="{{ isset(@errors['user']) }}">
+                            {{ @errors['user'] }}
+                </check></span>
             </div>
             <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" class="form-control" name="name" id="name" aria-describedby="name" placeholder="Enter Name">
+                <label for="fname">First Name</label>
+                <input type="text" class="form-control" name="fname" id="fname" aria-describedby="name" placeholder="Enter First Name" value="{{ @fname }}">
+                <span class="text-danger"><check if="{{ isset(@errors['fname']) }}">
+                            {{ @errors['fname'] }}
+                        </check></span>
             </div>
-
+            <div class="form-group">
+                <label for="lname">Last Name</label>
+                <input type="text" class="form-control" name="lname" id="lname" aria-describedby="name" placeholder="Enter Last Name" value="{{ @lname }}">
+                <span class="text-danger"><check if="{{ isset(@errors['lname']) }}">
+                            {{ @errors['lname'] }}
+                        </check></span>
+            </div>
             <div class="form-group">
                 <label for="username">Age</label>
-                <input type="text" class="form-control" name="age" id="age" aria-describedby="age" placeholder="Enter Age">
+                <input type="text" class="form-control" name="age" id="age" aria-describedby="age" placeholder="Enter Age" value="{{ @age }}">
+                <span class="text-danger"><check if="{{ isset(@errors['age']) }}">
+                            {{ @errors['age'] }}
+                        </check></span>
             </div>
             <div class="form-group">
                 <label for="grade">Grade</label>
-                <input type="text" class="form-control" name="grade" id="grade" aria-describedby="grade" placeholder="Enter Grade">
+                <input type="text" class="form-control" name="grade" id="grade" aria-describedby="grade" placeholder="Enter Grade" value="{{ @grade }}">
+                <span class="text-danger"><check if="{{ isset(@errors['grade']) }}">
+                            {{ @errors['grade'] }}
+                        </check></span>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password" value="{{ @password }}">
+                <span class="text-danger"><check if="{{ isset(@errors['password']) }}">
+                            {{ @errors['password'] }}
+                        </check></span>
             </div>
             <div class="form-group">
                 <label for="cpassword">Confirm Password</label>
-                <input type="password" class="form-control" id="cpassword" name="cpassword" placeholder="Confrim Password">
+                <input type="password" class="form-control" id="cpassword" name="cpassword" placeholder="Confrim Password" value="{{ @cpassword }}">
+                <span class="text-danger"><check if="{{ isset(@errors['cpassword']) }}">
+                            {{ @errors['cpassword'] }}
+                        </check></span>
             </div>
             <button type="submit" class="btn blue">Sign Up!</button>
         </form>
@@ -69,10 +106,12 @@
 
 
 </div>
-
-<div>
-    @Sezyl
+<br><br>
+<div class="justify-content-center align-self-center text-center d-flex">
+    <br>
+    <h6>@Sezyl</h6>
 </div>
+<br>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
