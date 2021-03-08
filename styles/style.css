@@ -94,3 +94,14 @@ a{
 .row{
     color:black;
 }
+.image-list {
+
+    display: block;
+
+}
+.image-styles {
+
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+
+}
