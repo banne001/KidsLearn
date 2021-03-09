@@ -47,15 +47,16 @@
     </nav>
 
 
-    <div class="container">
+    <div class="container" id="showAnimals">
         <!-- Use Repeat tag and get info from database-->
-        <div class="row">
-            <div class="col-3  col-sm-5 ">
-                <img src="" alt="">
+        <div class="row" >
+            <div class="col-4  col-sm-5 ">
+                <div id="target"></div>
             </div>
-            <div class="col-9 col-sm-7">
-                <h2>Name of Animal</h2>
-                <h2>Description:</h2>
+            <div class="col-8 col-sm-7">
+
+                <span id="result"></span>
+
             </div>
         </div>
     </div>
@@ -74,9 +75,9 @@
 </div>
 <br>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="//code.jquery.com/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-
+<script src="scripts/displayAnimals.js"></script>
 </body>
 </html>
