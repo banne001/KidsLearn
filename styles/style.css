@@ -97,6 +97,8 @@ a{
 .image-list {
 
     display: block;
+    width: 200px;
+    height: auto;
 
 }
 .image-styles {
