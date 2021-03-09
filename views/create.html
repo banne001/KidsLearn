@@ -45,11 +45,16 @@
             </div>
         </div><!-- container -->
     </nav>
-    <div class="container gold"><h1>Create </h1></div>
+    <div class="container gold p-3"><h1>Create </h1></div>
 
     <div class="container grey p-5">
+        <div class="text-center">
+            <h2 class="p-3">Draw a Shape, Animal, or Fruits</h2>
+            <hr>
+            <h4>Draw, download, and upload the file!</h4>
+            <h4>or upload any image you'd like</h4>
+        </div>
 
-        <h2>Draw a Shape, Animal, or Fruits</h2>
         <div class="row">
             <canvas id="can" class="m-2"></canvas>
 
@@ -72,19 +77,35 @@
                 <button class="btn btn-secondary" id="btn" onclick="save()">Save</button>
                 <button class="btn btn-secondary" id="clr" onclick="erase()">Clear</button>
             </div>
-            <form action="">
-
-                <div class="col justify-content-center p-0 m-2">
-
+            <div class="col justify-content-center p-0 m-2">
+                <a download href="" title="ImageName" id="downloadable">
                     <img id="canvasimg" style="display:none;">
+                </a>
+            </div>
+        </div>
+            <form action="#" method="post" enctype="multipart/form-data">
 
+                <br>
+                <h5>Upload your Profile Picture!</h5>
+                <div class="row m-3">
+                    <input type="file" name="fileToUpload" id="fileToUpload">
+                    <br>
+                    <span class="text-danger"><check if="{{ isset(@errors['pics']) }}">
+                    {{ @errors['pics'] }}
+                </check></span>
+                </div>
+                <div class="row">
+                    <div class="col-9">
+                    </div>
+                    <div class="col-3 align-self-end">
+                        <button class="form-control btn btn-danger" type="submit" value="Next">Next ></button>
+                    </div>
                 </div>
             </form>
 
-        </div>
+
         <br>
-        <div class="d-inline-block "><button class="btn btn-success justify-content-end">Next</button></div>
-        <a href="createType">NEXT</a>
+
     </div>
 
 
@@ -94,6 +115,9 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
     <script src="scripts/canvas.js"></script>
+<script>
+
+</script>
 
 </body>
 </html>

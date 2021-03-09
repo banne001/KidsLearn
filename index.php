@@ -19,6 +19,7 @@ $f3->set('Debug',3);
 
 //Define a default route (home page)
 $f3->route('GET /', function(){
+
     //creating a new view using the Template constructor
     $view = new Template();
     //echo the view and invoke its render method and supply the path
@@ -48,7 +49,40 @@ $f3->route('GET /fruits', function(){
     echo $view->render('views/fruits.html');
 });
 //create route
-$f3->route('GET /create', function(){
+$f3->route('GET|POST /create', function($f3){
+    if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+        if(!empty($_FILES['fileToUpload']['name'])) {
+            $fileName = $_FILES['fileToUpload']['name'];
+            $fileNameCmps = explode(".", $fileName);
+            $fileExtension = strtolower(end($fileNameCmps));
+            if (validExtension($fileExtension) == true) {
+                //File Details
+                //$fileSize = $_FILES['fileToUpload']['size'];
+                //$fileType = $_FILES['fileToUpload']['type'];
+                $fileTmpPath = $_FILES['fileToUpload']['tmp_name'];
+
+                //sanitize file name
+                $newFileName = md5(time() . $fileName) . '.' . $fileExtension;
+                $uploadFileDir = 'images/';
+                $dest_path = $uploadFileDir . $newFileName;
+                $_SESSION['pics']=$dest_path;
+                if (move_uploaded_file($fileTmpPath, $dest_path)) {
+                    echo 'File is successfully uploaded.';
+                } else {
+                    echo 'There was some error moving the file to upload directory. Please make sure the upload directory is writable by web server.';
+                }
+                //var_dump($_SESSION);
+            } else {
+                $f3->set('errors["pics"]', "Invalid file type");
+            }
+        } else {
+            $f3->set('errors["pics"]', "Required");
+        }
+        if(empty($f3->get('errors'))) {
+            $f3->reroute('/createType');
+        }
+    }
+
 
 
     //creating a new view using the Template constructor
@@ -57,8 +91,33 @@ $f3->route('GET /create', function(){
     echo $view->render('views/create.html');
 });
 //create1 route
-$f3->route('GET /createType', function($f3){
+$f3->route('GET|POST /createType', function($f3){
 
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        //var_dump($_POST);
+        $oname = $_POST['oname'];
+        $desc = $_POST['desc'];
+        $type = $_POST['type'];
+
+        if(validName($oname)){
+            $_SESSION['oname'] = $oname;
+        } else {
+            $f3->set('errors["oname"]', "Name cannot be blank and must contain only characters");
+        }
+        $_SESSION['desc'] = $desc;
+        if(isset($type)){
+            if(validType($type)){
+                //$_SESSION['seek'] = $_POST['seek'];
+                $_SESSION['type'] = $type;
+            } else {
+                $f3->set('errors["type"]', "Stop Spoofing");
+            }
+        }
+        //var_dump($_SESSION);
+        if(empty($f3->get('errors'))) {
+            $f3->reroute('/createFinish');
+        }
+    }
     $f3->set("types", getTypes());
 
 
@@ -69,6 +128,7 @@ $f3->route('GET /createType', function($f3){
 });
 //create1 route
 $f3->route('GET /createFinish', function($f3){
+
 
     //creating a new view using the Template constructor
     $view = new Template();

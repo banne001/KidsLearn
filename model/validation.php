@@ -29,3 +29,12 @@ function validGrade($grade){
 function validObject($type){
     return in_array($type, getTypes());
 }
+function validExtension($ext)
+{
+
+    return in_array($ext, getExtensions());
+}
+
+function validType($type){
+    return in_array($type, getTypes());
+}

@@ -15,7 +15,7 @@
     <nav class="navbar navbar-expand-sm" >
         <div class="container">
             <!-- logo -->
-            <a href="{{ @BASE }}" class="navbar-brand text-white" id="logo"><strong>Kids Learn</strong></a>
+            <a href="{{ @BASE }}" class="navbar-brand text-white" id="logo">Kids Learn</a>
             <!-- Menu Bar -->
             <button class="navbar-toggler navbar-dark" type="button"
                     data-toggle="collapse" data-target="#myTogglerNav"
@@ -46,23 +46,26 @@
         </div><!-- container -->
     </nav>
 
+    <div class="container bg-success p-3"><h1>Learn about Animals! </h1></div>
+    <div class="container p-4">
+        <div class="container" id="showAnimals">
+            <!-- Use Repeat tag and get info from database-->
+            <div class="row" >
+                <div class="col-4  col-sm-5 ">
+                    <div id="target"></div>
+                </div>
+                <div class="col-8 col-sm-7">
 
-    <div class="container" id="showAnimals">
-        <!-- Use Repeat tag and get info from database-->
-        <div class="row" >
-            <div class="col-4  col-sm-5 ">
-                <div id="target"></div>
-            </div>
-            <div class="col-8 col-sm-7">
+                    <span id="result"></span>
 
-                <span id="result"></span>
-
+                </div>
             </div>
         </div>
     </div>
 
-    <div>
-        <a href="{{ @BASE }}" class="button links"><p class="blue">Go Home</p></a>
+
+    <div class="d-flex justify-content-center m-2 p-2 mx-auto">
+        <a href="{{@BASE}}" class="d-inline btn blue btn-large w-25 p-2 mx-auto ">Go Back Home</a>
     </div>
 
 

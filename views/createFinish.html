@@ -45,24 +45,31 @@
             </div>
         </div><!-- container -->
     </nav>
-    <div class="container gold"><h1>Create </h1></div>
+    <div class="container gold p-3"><h1>Create </h1></div>
     <div class="container grey p-5">
+        <h2 class="p-3 text-center">Your Creation</h2>
+        <hr>
         <div class="row">
             <div class="col-4">
-
+                <img src="{{ @SESSION.pics }}" class="w-100" alt="{{ @SESSION.name }}">
             </div>
             <div class="col-8">
                 <h2>Name: </h2>
-                <br>
-                <p>{{ @SESSION.creation->getName() }}</p>
+                <p>{{ @SESSION.oname }}</p>
+                <h2>Type:</h2>
+
+                <p>{{ @SESSION.type }}</p>
                 <h2>Description:</h2>
-                <br>
-                <p>{{ @SESSION.creation->getDescription() }}</p>
+
+                <p>{{ @SESSION.desc }}</p>
             </div>
         </div>
-
-        <a href="createFinish">NEXT</a>
+        <div class="d-flex justify-content-center m-2 p-2 mx-auto">
+            <a href="{{@BASE}}" class="d-inline btn blue btn-large w-25 p-2 mx-auto ">Go Back Home</a>
+            <a href="create" class="d-inline blue btn w-25 btn-large p-2 mx-auto ">All Creations!</a>
+        </div>
     </div>
+
 
 
 

@@ -72,6 +72,8 @@ function save() {
     let dataURL = canvas.toDataURL();
     document.getElementById("canvasimg").src = dataURL;
     document.getElementById("canvasimg").style.display = "inline";
+    document.getElementById("downloadable").href = dataURL;
+
 }
 
 function findxy(res, e) {
