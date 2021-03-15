@@ -18,7 +18,7 @@ class User{
      * @param $_passwd
      * @param $_isPro
      */
-    public function __construct($_username, $_fname, $_lname, $_age, $_grade, $_passwd, $_isPro)
+    public function __construct($_username = "", $_fname = "", $_lname = "", $_age = "", $_grade = "", $_passwd = "", $_isPro = false)
     {
         $this->_username = $_username;
         $this->_fname = $_fname;
@@ -30,8 +30,12 @@ class User{
     }
 
     /**
-     * @return mixed
+     * @param mixed|string $passwd
      */
+    public function setPasswd($passwd)
+    {
+        $this->_passwd = $passwd;
+    }
 
 
 

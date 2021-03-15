@@ -117,8 +117,6 @@ class Controller {
         }
 
         $this->_f3->set("types", $dataLayer->getTypes());
-
-
         //creating a new view using the Template constructor
         $view = new Template();
         //echo the view and invoke its render method and supply the path
@@ -141,7 +139,6 @@ class Controller {
 
     function signUp(){
         global $validator;
-        global $dataLayer;
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $username = trim($_POST['username']);
             $fname = trim($_POST['fname']);
@@ -150,53 +147,61 @@ class Controller {
             $grade = $_POST['grade'];
             $password = $_POST['password'];
             $cpassword = $_POST['cpassword'];
-
+            $user = new User();
+            if(isset($_POST['premium'])){
+                $user->setIsPro(true);
+            }
             if($validator->validName($username)){
-                $_SESSION['username'] = $username;
+                $user->setUsername($username);
             } else {
                 $this->_f3->set('errors["user"]', "Username cannot be blank and must contain only characters");
             }
+
             if($validator->validName($fname)){
-                $_SESSION['fname'] = $fname;
+                $user->setFname($fname);
+                //$_SESSION['fname'] = $fname;
             } else {
                 $this->_f3->set('errors["fname"]', "First name cannot be blank and must contain only characters");
             }
 
             if($validator->validName($lname)){
-                $_SESSION['lname'] = $lname;
+                $user->setLname($lname);
+                //$_SESSION['lname'] = $lname;
             } else {
                 $this->_f3->set('errors["lname"]', "Last name cannot be blank and must contain only characters");
             }
 
+
             if($validator->validAge($age)){
-                $_SESSION['age'] = $age;
+                $user->setAge($age);
+                //$_SESSION['age'] = $age;
             } else {
                 $this->_f3->set('errors["age"]', "Age needs to be numeric and between 18 and 118");
             }
 
             if(isset($grade)){
                 if($validator->validGrade($grade)){
-                    $_SESSION['grade'] = $grade;
+                    $user->setGrade($grade);
+                    //$_SESSION['grade'] = $grade;
                 } else {
                     $this->_f3->set('errors["grade"]', "Grade needs to be numeric and under 12");
                 }
             }
             if($validator->validPassword($password)){
-                $_SESSION['password'] = $password;
+                //$_SESSION['password'] = $password;
             } else {
                 $this->_f3->set('errors["password"]', "Password needs ...");
             }
 
             if($password == $cpassword){
-                $_SESSION['password'] = $password;
+                $user->setPasswd($password);
             } else {
                 $this->_f3->set('errors["cpassword"]', "Not the same to password");
             }
             //passed all cases
             if(empty($this->_f3->get('errors'))) {
-
                 global $dataLayer;
-                $dataLayer->insertUser($_SESSION['user']);
+                $dataLayer->insertUser($user);
 
                 $this->_f3->reroute('/');  //GET
 
@@ -207,9 +212,6 @@ class Controller {
         $this->_f3->set('lname', isset($lname) ? $lname: "");
         $this->_f3->set('age', isset($age) ? $age: "");
         $this->_f3->set('grade', isset($grade) ? $grade: "");
-
-
-
 
         //creating a new view using the Template constructor
         $view = new Template();

@@ -26,7 +26,7 @@ class Validation {
     /** validPassword() returns true password is valid */
     function validPassword($password)
     {
-        //still work on this
+        //TODO: do we need a requirement...?
         return true;
     }
 
