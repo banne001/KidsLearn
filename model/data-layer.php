@@ -1,17 +1,19 @@
 <?php
 
+class DataLayer{
+        /**
+         * @return Array a limited list of indoor interests
+         */
+    function getTypes()
+    {
+        return array('shapes', 'animals', 'fruits');
+    }
 
-/**
- * @return Array a limited list of indoor interests
- */
-function getTypes()
-{
-    return array('shapes', 'animals', 'fruits');
+    /**
+     * @return Array of accepatable type of pictures
+     */
+    function getExtensions(){
+        return array('png', 'jpeg', 'jpg');
+    }
 }
 
-/**
- * @return Array of accepatable type of pictures
- */
-function getExtensions(){
-    return array('png', 'jpeg', 'jpg');
-}

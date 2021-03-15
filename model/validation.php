@@ -3,38 +3,51 @@
  * Contains validation functions for Sign Up
  *
  */
-/**
- * validUsername() returns true if username is not empty and no spaces
- * Used for username, first and last name
- */
-function validName($user){
-    return !empty($user) && ctype_alpha($user);
-}
+class Validation {
+    private $_dataLayer;
 
-/** validPassword() returns true password is valid */
-function validPassword($password)
-{
-    //still work on this
-    return true;
-}
+    /**
+     * Validation constructor.
+     * @param $dataLayer
+     */
+    public function __construct($dataLayer)
+    {
+        $this->_dataLayer = $dataLayer;
+    }
 
-/** validAge() returns the age is numeric and less than 118 */
-function validAge($age){
-    return is_numeric($age) && $age <=118;
-}
-/** validAge() returns the age is numeric and less than 118 */
-function validGrade($grade){
-    return is_numeric($grade) && $grade <=12;
-}
-function validObject($type){
-    return in_array($type, getTypes());
-}
-function validExtension($ext)
-{
+    /**
+     * validUsername() returns true if username is not empty and no spaces
+     * Used for username, first and last name
+     */
+    function validName($user){
+        return !empty($user) && ctype_alpha($user);
+    }
 
-    return in_array($ext, getExtensions());
-}
+    /** validPassword() returns true password is valid */
+    function validPassword($password)
+    {
+        //still work on this
+        return true;
+    }
 
-function validType($type){
-    return in_array($type, getTypes());
+    /** validAge() returns the age is numeric and less than 118 */
+    function validAge($age){
+        return is_numeric($age) && $age <=118;
+    }
+    /** validAge() returns the age is numeric and less than 118 */
+    function validGrade($grade){
+        return is_numeric($grade) && $grade <=12;
+    }
+    function validObject($type){
+        return in_array($type, $this->_dataLayer->getTypes());
+    }
+    function validExtension($ext)
+    {
+
+        return in_array($ext, $this->_dataLayer->getExtensions());
+    }
+
+    function validType($type){
+        return in_array($type, $this->_dataLayer->getTypes());
+    }
 }
