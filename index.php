@@ -18,7 +18,7 @@ require $_SERVER['DOCUMENT_ROOT'].'/../config.php';
 $f3 = Base::instance();
 $f3->set('Debug',3);
 
-$dataLayer = new DataLayer();
+$dataLayer = new DataLayer($dbh);
 $validator = new Validation($dataLayer);
 $controller = new Controller($f3);
 

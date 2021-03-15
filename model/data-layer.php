@@ -13,8 +13,8 @@ class DataLayer{
      * insertion to member table
      * @param $user Object
      */
-    function insertMembers($user){
-    echo"hello world";
+    function insertUser($user){
+    //echo"hello world";
 
         ///build query
         $sql = "INSERT INTO kidUsers (username, name, age, grade, passwd, isPro) 

@@ -5,7 +5,7 @@ class User{
     private $_lname;
     private $_age;
     private $_grade;
-    private $_password;
+    private $_passwd;
     private $_isPro;
 
     /**
@@ -15,19 +15,24 @@ class User{
      * @param $_lname
      * @param $_age
      * @param $_grade
-     * @param $_password
+     * @param $_passwd
      * @param $_isPro
      */
-    public function __construct($_username, $_fname, $_lname, $_age, $_grade, $_password, $_isPro)
+    public function __construct($_username, $_fname, $_lname, $_age, $_grade, $_passwd, $_isPro)
     {
         $this->_username = $_username;
         $this->_fname = $_fname;
         $this->_lname = $_lname;
         $this->_age = $_age;
         $this->_grade = $_grade;
-        $this->_password = $_password;
+        $this->_passwd = $_passwd;
         $this->_isPro = $_isPro;
     }
+
+    /**
+     * @return mixed
+     */
+
 
 
     /**
@@ -116,6 +121,10 @@ class User{
     public function getIsPro()
     {
         return $this->_isPro;
+    }
+    public function getPasswd()
+    {
+        return $this->_passwd;
     }
 
     /**

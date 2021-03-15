@@ -1,6 +1,5 @@
 <?php
-require_once('model/data-layer.php');
-require_once('model/validation.php');
+
 class Controller {
 
     private $_f3;
@@ -15,10 +14,13 @@ class Controller {
     }
 
     function home(){
+
+
         //creating a new view using the Template constructor
         $view = new Template();
         //echo the view and invoke its render method and supply the path
         echo $view->render('views/home.html');
+
     }
 
     function shapes(){
@@ -139,6 +141,7 @@ class Controller {
 
     function signUp(){
         global $validator;
+        global $dataLayer;
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $username = trim($_POST['username']);
             $fname = trim($_POST['fname']);
@@ -151,7 +154,7 @@ class Controller {
             if($validator->validName($username)){
                 $_SESSION['username'] = $username;
             } else {
-                $this->_f3->set('errors["username"]', "Username cannot be blank and must contain only characters");
+                $this->_f3->set('errors["user"]', "Username cannot be blank and must contain only characters");
             }
             if($validator->validName($fname)){
                 $_SESSION['fname'] = $fname;
@@ -191,14 +194,22 @@ class Controller {
             }
             //passed all cases
             if(empty($this->_f3->get('errors'))) {
+
+                global $dataLayer;
+                $dataLayer->insertUser($_SESSION['user']);
+
                 $this->_f3->reroute('/');  //GET
+
             }
         }
         $this->_f3->set('username', isset($username) ? $username: "");
         $this->_f3->set('fname', isset($fname) ? $fname: "");
         $this->_f3->set('lname', isset($lname) ? $lname: "");
         $this->_f3->set('age', isset($age) ? $age: "");
-        $this->_f3->set('gender', isset($grade) ? $grade: "");
+        $this->_f3->set('grade', isset($grade) ? $grade: "");
+
+
+
 
         //creating a new view using the Template constructor
         $view = new Template();
