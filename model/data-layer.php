@@ -37,6 +37,27 @@ class DataLayer{
         $statement->execute();
 
     }
+    function insertProUser($proUser){
+        echo"hello world";
+        ///build query
+        $sql = "INSERT INTO creations (name, description, object, user_id, image) 
+                VALUES (:name, :description, :object, :user_id, :image)";
+
+        //prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+        //$pro = $user instanceof proUser;
+
+        //bind the parameters
+        $statement->bindParam(':name', $proUser->getName(), PDO::PARAM_STR);
+        $statement->bindParam(':description', $proUser->getDesc(), PDO::PARAM_STR);
+        $statement->bindParam(':object', $proUser->getObject(), PDO::PARAM_STR);
+        $statement->bindParam(':user_id', $proUser-> getUserId(), PDO::PARAM_INT);
+        $statement->bindParam(':image', $proUser->getImage(), PDO::PARAM_STR);
+
+        //process results
+        $statement->execute();
+
+    }
 
         /**
          * @return Array a limited list of indoor interests

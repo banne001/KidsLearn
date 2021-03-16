@@ -90,29 +90,40 @@ class Controller {
     function create1(){
         global $dataLayer;
         global $validator;
+        //global $proUser;
+
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             //var_dump($_POST);
             $oname = $_POST['oname'];
             $desc = $_POST['desc'];
             $type = $_POST['type'];
+            $proUser = new proUser();
+
 
             if($validator->validName($oname)){
-                $_SESSION['oname'] = $oname;
+
+                $proUser->setName($oname);
             } else {
                 $this->_f3->set('errors["oname"]', "Name cannot be blank and must contain only characters");
             }
-            $_SESSION['desc'] = $desc;
+
+            $proUser->setDesc($desc);
             if(isset($type)){
                 if($validator->validType($type)){
                     //$_SESSION['seek'] = $_POST['seek'];
-                    $_SESSION['type'] = $type;
+
+                    $proUser->setObject($type);
                 } else {
                     $this->_f3->set('errors["type"]', "Stop Spoofing");
                 }
             }
             //var_dump($_SESSION);
             if(empty($this->_f3->get('errors'))) {
+
+
                 $this->_f3->reroute('/createFinish');
+               // $dataLayer->insertProUser($proUser);
+
             }
         }
 
@@ -121,9 +132,11 @@ class Controller {
         $view = new Template();
         //echo the view and invoke its render method and supply the path
         echo $view->render('views/create1.html');
+
     }
 
     function createFinish(){
+
         //creating a new view using the Template constructor
         $view = new Template();
         //echo the view and invoke its render method and supply the path
