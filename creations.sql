@@ -59,6 +59,8 @@ ALTER TABLE `creations`
 COMMIT;
 
 alter table creations add COLUMN image varchar(1000)
+alter table kidUsers add COLUMN subject varchar(100)
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

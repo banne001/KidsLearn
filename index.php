@@ -6,12 +6,12 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-session_start();
 
 //Require the auto autoload file
 require_once('vendor/autoload.php');
 require $_SERVER['DOCUMENT_ROOT'].'/../config.php';
 
+session_start();
 
 
 //Create an instance of the Base class
@@ -72,5 +72,13 @@ $f3->route('GET|POST /signUp', function($f3){
     global $controller;
     $controller->signUp();
 });
+
+//sign up route
+$f3->route('GET|POST /signUpPro', function($f3){
+    global $controller;
+    $controller->signUpPro();
+});
+
+
 //Run fat free
 $f3->run();

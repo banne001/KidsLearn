@@ -1,27 +1,17 @@
 <?php
-class proUser extends User
+class ProUser extends User
 {
-    private $_name;
-    private $_desc;
-    private $_object;
+    private $_subject;
     private $_user_id;
-    private $_image;
 
     /**
      * PremiumMember constructor.
-     * @param $_name
-     * @param $_desc
-     * @param $_object
-     * @param $_image
+     * @param string $subject
      */
-    public function __construct($_name="", $_desc="", $_object="",$_user_id="" ,$_image="")
+    public function __construct($subject="")
     {
         parent::__construct();
-        $this->_name = $_name;
-        $this->_desc = $_desc;
-        $this->_object = $_object;
-        $this->_object = $_user_id;
-        $this->_image = $_image;
+        $this->_subject = $subject;
     }
 
     /**
@@ -43,67 +33,18 @@ class proUser extends User
     /**
      * @return mixed
      */
-    public function getName()
+    public function getSubject()
     {
-        return $this->_name;
+        return $this->_subject;
     }
 
     /**
-     * @param mixed $name
+     * @param mixed $subject
      */
-    public function setName($name)
+    public function setSubject($subject)
     {
-        $this->_name = $name;
+        $this->_subject = $subject;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getDesc()
-    {
-        return $this->_desc;
-    }
-
-    /**
-     * @param mixed $desc
-     */
-    public function setDesc($desc)
-    {
-        $this->_desc = $desc;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getObject()
-    {
-        return $this->_object;
-    }
-
-    /**
-     * @param mixed $object
-     */
-    public function setObject($object)
-    {
-        $this->_object = $object;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getImage()
-    {
-        return $this->_image;
-    }
-
-    /**
-     * @param mixed $image
-     */
-    public function setImage($image)
-    {
-        $this->_image = $image;
-    }
-
 
 
 }

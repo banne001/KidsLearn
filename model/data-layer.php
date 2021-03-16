@@ -17,13 +17,16 @@ class DataLayer{
     //echo"hello world";
 
         ///build query
-        $sql = "INSERT INTO kidUsers (username, name, age, grade, passwd, isPro) 
-                VALUES (:username, :name, :age, :grade, :passwd, :isPro)";
+        $sql = "INSERT INTO kidUsers (username, name, age, grade, passwd, isPro, subject) 
+                VALUES (:username, :name, :age, :grade, :passwd, :isPro, :subject)";
 
         //prepare the statement
         $statement = $this->_dbh->prepare($sql);
         //$pro = $user instanceof proUser;
-
+        $subject = "";
+        if($user instanceof ProUser){
+            $subject = $user->getSubject();
+        }
         //bind the parameters
         $statement->bindParam(':username', $user->getUsername(), PDO::PARAM_STR);
         $statement->bindParam(':name', $user->getFname(), PDO::PARAM_STR);
@@ -32,12 +35,13 @@ class DataLayer{
         $statement->bindParam(':grade', $user->getGrade(), PDO::PARAM_INT);
         $statement->bindParam(':passwd', $user->getPasswd(), PDO::PARAM_STR);
         $statement->bindParam(':isPro', $user->getIsPro(), PDO::PARAM_INT);
+        $statement->bindParam(':subject', $subject, PDO::PARAM_STR);
 
         //process results
         $statement->execute();
-
     }
-    function insertProUser($proUser){
+
+    function insertCreation($proUser){
 
         ///build query
         $sql = "INSERT INTO creations (name, description, object, user_id, image) 
