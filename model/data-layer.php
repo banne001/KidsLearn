@@ -42,7 +42,7 @@ class DataLayer{
     }
 
     function insertCreation($proUser){
-
+        echo "I HAVE CREATTED SOMETHINGGG";
         ///build query
         $sql = "INSERT INTO creations (name, description, object, user_id, image) 
                 VALUES (:name, :description, :object, :user_id, :image)";
@@ -55,7 +55,7 @@ class DataLayer{
         $statement->bindParam(':name', $proUser->getName(), PDO::PARAM_STR);
         $statement->bindParam(':description', $proUser->getDesc(), PDO::PARAM_STR);
         $statement->bindParam(':object', $proUser->getObject(), PDO::PARAM_STR);
-        $statement->bindParam(':user_id', $proUser-> getUserId(), PDO::PARAM_INT);
+        $statement->bindParam(':user_id', $proUser->getUserId(), PDO::PARAM_INT);
         $statement->bindParam(':image', $proUser->getImage(), PDO::PARAM_STR);
 
         //process results

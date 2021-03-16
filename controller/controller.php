@@ -78,9 +78,6 @@ class Controller {
                 $this->_f3->reroute('/createType');
             }
         }
-
-
-
         //creating a new view using the Template constructor
         $view = new Template();
         //echo the view and invoke its render method and supply the path
@@ -92,37 +89,34 @@ class Controller {
         global $validator;
         //global $proUser;
         //global $proUser;
+        $creation = new Creations();
 
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             //var_dump($_POST);
             $oname = $_POST['oname'];
             $desc = $_POST['desc'];
             $type = $_POST['type'];
-            $proUser = new proUser();
-
-
 
             if($validator->validName($oname)){
-
-                $proUser->setName($oname);
+                $_SESSION['oname'] = $oname;
+                $creation->setName($oname);
             } else {
                 $this->_f3->set('errors["oname"]', "Name cannot be blank and must contain only characters");
             }
-
-            $proUser->setDesc($desc);
+            $_SESSION['desc'] = $desc;
+            $creation->setDesc($desc);
             if(isset($type)){
                 if($validator->validType($type)){
-                    //$_SESSION['seek'] = $_POST['seek'];
-
-                    $proUser->setObject($type);
+                    $_SESSION['type'] = $type;
+                    $creation->setObject($type);
                 } else {
                     $this->_f3->set('errors["type"]', "Stop Spoofing");
                 }
             }
             //var_dump($_SESSION);
             if(empty($this->_f3->get('errors'))) {
-
-                $dataLayer->insertProUser($proUser);
+                $creation->setImage($_SESSION['pics']);
+                $dataLayer->insertCreation($creation);
                 $this->_f3->reroute('/createFinish');
                // $dataLayer->insertProUser($proUser);
 
@@ -141,13 +135,14 @@ class Controller {
 
 
         global $dataLayer;
-        global $proUser;
+        global $creation;
         //global $order;
 
         //creating a new view using the Template constructor
         $view = new Template();
         //echo the view and invoke its render method and supply the path
         echo $view->render('views/createFinish.html');
+        session_destroy();
     }
 
     function signIn(){
