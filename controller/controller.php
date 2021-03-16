@@ -91,6 +91,7 @@ class Controller {
         global $dataLayer;
         global $validator;
         //global $proUser;
+        //global $proUser;
 
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             //var_dump($_POST);
@@ -98,6 +99,7 @@ class Controller {
             $desc = $_POST['desc'];
             $type = $_POST['type'];
             $proUser = new proUser();
+
 
 
             if($validator->validName($oname)){
@@ -120,7 +122,7 @@ class Controller {
             //var_dump($_SESSION);
             if(empty($this->_f3->get('errors'))) {
 
-
+                $dataLayer->insertProUser($proUser);
                 $this->_f3->reroute('/createFinish');
                // $dataLayer->insertProUser($proUser);
 
@@ -136,6 +138,11 @@ class Controller {
     }
 
     function createFinish(){
+
+
+        global $dataLayer;
+        global $proUser;
+        //global $order;
 
         //creating a new view using the Template constructor
         $view = new Template();

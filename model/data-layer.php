@@ -38,7 +38,7 @@ class DataLayer{
 
     }
     function insertProUser($proUser){
-        echo"hello world";
+
         ///build query
         $sql = "INSERT INTO creations (name, description, object, user_id, image) 
                 VALUES (:name, :description, :object, :user_id, :image)";
