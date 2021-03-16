@@ -51,6 +51,7 @@ class Controller {
                 $fileName = $_FILES['fileToUpload']['name'];
                 $fileNameCmps = explode(".", $fileName);
                 $fileExtension = strtolower(end($fileNameCmps));
+                $proUser = new proUser();
                 if ($validator->validExtension($fileExtension) == true) {
                     //File Details
                     //$fileSize = $_FILES['fileToUpload']['size'];
@@ -61,7 +62,9 @@ class Controller {
                     $newFileName = md5(time() . $fileName) . '.' . $fileExtension;
                     $uploadFileDir = 'images/';
                     $dest_path = $uploadFileDir . $newFileName;
-                    $_SESSION['pics']=$dest_path;
+                   // $_SESSION['pics']=$dest_path;
+                    $proUser->setImage($dest_path);
+
                     if (move_uploaded_file($fileTmpPath, $dest_path)) {
                         echo 'File is successfully uploaded.';
                     } else {
@@ -75,6 +78,9 @@ class Controller {
                 $this->_f3->set('errors["pics"]', "Required");
             }
             if(empty($this->_f3->get('errors'))) {
+
+                $_SESSION['proUser'] = $proUser;
+
                 $this->_f3->reroute('/createType');
             }
         }
@@ -90,26 +96,28 @@ class Controller {
     function create1(){
         global $dataLayer;
         global $validator;
-        //global $proUser;
-        //global $proUser;
+        //$_SESSION['pics']=$dest_path;
+        $pic = $_SESSION['pics'];
 
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
-            //var_dump($_POST);
             $oname = $_POST['oname'];
             $desc = $_POST['desc'];
             $type = $_POST['type'];
-            $proUser = new proUser();
 
-
+            $proUser= new proUser();
 
             if($validator->validName($oname)){
+
 
                 $proUser->setName($oname);
             } else {
                 $this->_f3->set('errors["oname"]', "Name cannot be blank and must contain only characters");
             }
+            if(isset($desc)){
+                $proUser->setDesc($desc);
+            }
 
-            $proUser->setDesc($desc);
+
             if(isset($type)){
                 if($validator->validType($type)){
                     //$_SESSION['seek'] = $_POST['seek'];
@@ -122,13 +130,13 @@ class Controller {
             //var_dump($_SESSION);
             if(empty($this->_f3->get('errors'))) {
 
+                $_SESSION['proUser'] = $proUser;
                 $dataLayer->insertProUser($proUser);
+
                 $this->_f3->reroute('/createFinish');
                // $dataLayer->insertProUser($proUser);
-
             }
         }
-
         $this->_f3->set("types", $dataLayer->getTypes());
         //creating a new view using the Template constructor
         $view = new Template();
@@ -139,12 +147,8 @@ class Controller {
 
     function createFinish(){
 
-
-        global $dataLayer;
-        global $proUser;
-        //global $order;
-
         //creating a new view using the Template constructor
+
         $view = new Template();
         //echo the view and invoke its render method and supply the path
         echo $view->render('views/createFinish.html');
