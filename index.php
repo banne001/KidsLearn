@@ -62,7 +62,7 @@ $f3->route('GET /createFinish', function($f3){
     $controller->createFinish();
 });
 //sign in route
-$f3->route('GET /signIn', function(){
+$f3->route('GET|POST /signIn', function(){
     global $controller;
     $controller->signIn();
 
@@ -79,6 +79,15 @@ $f3->route('GET|POST /signUpPro', function($f3){
     $controller->signUpPro();
 });
 
+//sign up route
+$f3->route('GET /account', function($f3){
+    global $controller;
+    $controller->account();
+});
 
+$f3->route('GET /logout', function($f3){
+    global $controller;
+    $controller->logout();
+});
 //Run fat free
 $f3->run();

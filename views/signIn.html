@@ -50,7 +50,7 @@
     <div class="mx-auto mt-5 p-5 grey w-50 w-sm-100">
         <h1>Sign In!</h1>
         <hr>
-        <form action="">
+        <form action="#" method="post">
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" class="form-control" name="username" id="username" aria-describedby="username" placeholder="Enter Username">
@@ -59,6 +59,9 @@
                 <label for="password">Password</label>
                 <input type="password" class="form-control" id="password" name="password" placeholder="Password">
             </div>
+            <span class="text-danger"><check if="{{ isset(@errors['user']) }}">
+                            {{ @errors['user'] }}
+                        </check></span>
             <a href="signUp" class="btn blue">Sign Up</a>
             <button type="submit" class="btn blue">Sign In!</button>
         </form>
