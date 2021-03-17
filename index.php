@@ -84,7 +84,11 @@ $f3->route('GET /account', function($f3){
     global $controller;
     $controller->account();
 });
-
+//sign up route
+$f3->route('GET /creations', function($f3){
+    global $controller;
+    $controller->allCreations();
+});
 $f3->route('GET /logout', function($f3){
     global $controller;
     $controller->logout();

@@ -17,40 +17,6 @@ Version 1.0
 <div class="container text-white">
     <!-- Navigation bar -->
     <include href="views/navbar.html"></include>
-
-    <div class="container">
-            <!-- logo -->
-            <a href="{{ @BASE }}" class="navbar-brand text-white" id="logo">Kids Learn</a>
-            <!-- Menu Bar -->
-            <button class="navbar-toggler navbar-dark" type="button"
-                    data-toggle="collapse" data-target="#myTogglerNav"
-                    aria-controls="myTogglerNav"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{{@BASE}}">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="{{@BASE}}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Learn!
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="shapes">Learn Shapes</a>
-                            <a class="dropdown-item" href="animals">Learn Animals</a>
-                            <a class="dropdown-item" href="fruits">Learn Fruits</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="signIn">Sign In</a>
-                    </li>
-                </ul>
-            </div>
-        </div><!-- container -->
-    </nav>
-
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
@@ -87,7 +53,15 @@ Version 1.0
         <a href="shapes" class=" d-flex btn pink btn-large w-75 p-5 m-5 mx-auto justify-content-center">Learn Shapes</a>
         <a href="fruits" class="d-flex btn blue btn-large w-75 p-5 m-5 mx-auto justify-content-center">Learn Fruits</a>
         <a href="animals" class="d-flex btn pink btn-large w-75 p-5 m-5 mx-auto justify-content-center">Learn Animals</a>
-        <a href="create" class="d-flex gold btn w-75 btn-large p-5 m-5 mx-auto justify-content-center">Create an Object!</a>
+        <check if="{{ @SESSION.un instanceof ProUser }}">
+            <true>
+                <a href="create" class="d-flex gold btn w-75 btn-large p-5 m-5 mx-auto justify-content-center">Create an Object!</a>
+            </true>
+            <false>
+                <a href="create" class="disabled d-flex gold btn w-75 btn-large p-5 m-5 mx-auto justify-content-center">Create an Object! Only for ProUsers</a>
+
+            </false>
+        </check>
     </div>
 
 

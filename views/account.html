@@ -13,7 +13,9 @@
     <include href="views/navbar.html"></include>
     <div class="d-flex justify-content-around bg-success p-4">
         <a href="">Account</a>
-        <a href="creations">Creation</a>
+        <check if="{{ @details instanceof ProUser }}">
+            <a href="creations">Creation</a>
+        </check>
     </div>
 
     <ul class="list-group bg-dark p-5">
@@ -21,6 +23,9 @@
         <li class="list-group-item bg-dark">Name:  {{ @details->getFname() }}</li>
         <li class="list-group-item bg-dark">Age:  {{ @details->getAge() }}</li>
         <li class="list-group-item bg-dark">Grade:  {{ @details->getGrade() }}</li>
+        <check if="{{ @details instanceof ProUser }}">
+            <li class="list-group-item bg-dark">Subject: {{ @details->getSubject() }}</li>
+        </check>
     </ul>
 
 </div>

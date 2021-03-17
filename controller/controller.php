@@ -15,13 +15,10 @@ class Controller {
     }
 
     function home(){
-
-
         //creating a new view using the Template constructor
         $view = new Template();
         //echo the view and invoke its render method and supply the path
         echo $view->render('views/home.html');
-
     }
 
     function shapes(){
@@ -46,7 +43,7 @@ class Controller {
     }
 
     function create(){
-        var_dump($_SESSION['un']);
+        //var_dump($_SESSION['un']);
         global $validator;
         if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             if(!empty($_FILES['fileToUpload']['name'])) {
@@ -63,7 +60,9 @@ class Controller {
                     $newFileName = md5(time() . $fileName) . '.' . $fileExtension;
                     $uploadFileDir = 'images/';
                     $dest_path = $uploadFileDir . $newFileName;
-                    $_SESSION['pics']=$dest_path;
+                    $creation = new Creations();
+                    $creation->setImage($dest_path);
+                    $_SESSION['creation']=$creation;
                     if (move_uploaded_file($fileTmpPath, $dest_path)) {
                         echo 'File is successfully uploaded.';
                     } else {
@@ -92,7 +91,7 @@ class Controller {
         //global $proUser;
         //global $proUser;
         $creation = new Creations();
-        var_dump($_SESSION['un']);
+        //var_dump($_SESSION['un']);
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             //var_dump($_POST);
             $oname = $_POST['oname'];
@@ -100,27 +99,26 @@ class Controller {
             $type = $_POST['type'];
 
             if($validator->validName($oname)){
-                $_SESSION['oname'] = $oname;
-                $creation->setName($oname);
+                //$_SESSION['oname'] = $oname;
+                $_SESSION['creation']->setName($oname);
             } else {
                 $this->_f3->set('errors["oname"]', "Name cannot be blank and must contain only characters");
             }
-            $_SESSION['desc'] = $desc;
-            $creation->setDesc($desc);
+            $_SESSION['creation']->setDesc($desc);
+            //$creation->setDesc($desc);
             if(isset($type)){
                 if($validator->validType($type)){
-                    $_SESSION['type'] = $type;
-                    $creation->setObject($type);
+                    //$_SESSION['type'] = $type;
+                    $_SESSION['creation']->setObject($type);
                 } else {
                     $this->_f3->set('errors["type"]', "Stop Spoofing");
                 }
             }
             //var_dump($_SESSION);
             if(empty($this->_f3->get('errors'))) {
-                $creation->setImage($_SESSION['pics']);
-                $dataLayer->insertCreation($creation, $_SESSION['un']);
+                //$creation->setImage($_SESSION['pics']);
+                $dataLayer->insertCreation($_SESSION['creation'], $_SESSION['un']);
                 $this->_f3->reroute('/createFinish');
-                //$dataLayer->insertProUser($proUser);
             }
         }
 
@@ -137,10 +135,11 @@ class Controller {
         $view = new Template();
         //echo the view and invoke its render method and supply the path
         echo $view->render('views/createFinish.html');
-        $temp = $_SESSION['un'];
-        session_destroy();
-        $_SESSION['un'] = $temp;
-        var_dump($_SESSION);
+        unset($_SESSION['creation']);
+        //$temp = $_SESSION['un'];
+        //session_destroy();
+        //$_SESSION['un'] = $temp;
+        //var_dump($_SESSION);
     }
 
     function signIn(){
@@ -237,8 +236,7 @@ class Controller {
             } else {
                 $this->_f3->set('errors["cpassword"]', "Not the same to password");
             }
-            var_dump($user);
-
+            //var_dump($user);
             //passed all cases
             if(empty($this->_f3->get('errors'))) {
                 global $dataLayer;
@@ -248,8 +246,11 @@ class Controller {
                     $_SESSION['userCreate'] = $user;
                     $this->_f3->reroute('signUpPro');  //GET
                 } else {
-                    //$dataLayer->insertUser($user);
-                    $this->_f3->reroute('/');  //GET
+                    $_SESSION['un'] = $user;
+                    $dataLayer->insertUser($user);
+                    $result = $dataLayer->getUser($user->getUsername(), $user->getPasswd());
+                    $_SESSION['un'] = new User($result[0]['user_id'], $result[0]['username'], $result[0]['name'],"", $result[0]['age'], $result[0]['grade'], $result[0]['passwd'], false);
+                    $this->_f3->reroute('account');  //GET
                 }
             }
         }
@@ -268,18 +269,21 @@ class Controller {
     function signUpPro(){
         global $dataLayer;
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
-            $_SESSION['subject'] = $_POST['subject'];
+            $subject = $_POST['subject'];
             //TODO: validate maybe....
-            if(!empty($_SESSION['subject'])){
-                $_SESSION['userCreate']->setSubject("math");
+            if(!empty($subject)){
+                $_SESSION['userCreate']->setSubject($subject);
             } else {
                 $this->_f3->set('errors["subject"]', "Please enter a subject");
             }
             //var_dump($_SESSION);
             if(empty($this->_f3->get('errors'))) {
                 $dataLayer->insertUser($_SESSION['userCreate']);
-                $this->_f3->reroute('/');
-                session_destroy();
+                //$_SESSION['un'] = $_SESSION['userCreate'];
+                $result = $dataLayer->getUser($_SESSION['userCreate']->getUsername(), $_SESSION['userCreate']->getPasswd());
+                $_SESSION['un'] = new ProUser($result[0]['user_id'], $result[0]['username'], $result[0]['name'],"", $result[0]['age'], $result[0]['grade'], $result[0]['passwd'], true, $result[0]['subject']);
+                $this->_f3->reroute('account');
+                unset($_SESSION['userCreate']);
             }
         }
         //creating a new view using the Template constructor
@@ -295,6 +299,14 @@ class Controller {
         $view = new Template();
         //echo the view and invoke its render method and supply the path
         echo $view->render('views/account.html');
+    }
+
+    function allCreations(){
+        global $dataLayer;
+        $this->_f3->set('creations', $dataLayer->getCreations($_SESSION['un']->getUserId()));
+        $view = new Template();
+        //echo the view and invoke its render method and supply the path
+        echo $view->render('views/creations.html');
     }
 
     function logout()
