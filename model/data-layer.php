@@ -27,6 +27,12 @@ class DataLayer{
         if($user instanceof ProUser){
             $subject = $user->getSubject();
         }
+       // $username =  $user->getUsername();
+        //global $dataLayer;
+
+        //if($dataLayer->userExists($username)){
+           // return;
+        //}
         //bind the parameters
         $name = $user->getFname() . " " . $user->getLname();
         $pw = sha1($user->getPasswd());
@@ -48,7 +54,7 @@ class DataLayer{
     {
 
         //prepared statements for added security $this->_dbh->prepare
-        $query = $this->_dbh->prepare("SELECT COUNT(`id`) FROM kidUsers WHERE username = ?");
+        $query = $this->_dbh->prepare("SELECT COUNT(`username`) FROM kidUsers WHERE username = ?");
         $query->bindValue(1, $username);
 
         try {

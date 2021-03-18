@@ -190,12 +190,28 @@ class Controller {
             } else {
                 $user = new User();
             }
+
            global $dataLayer;
-            if($validator->validName($username) && $dataLayer->userExists($username)){
+            /**
+            if($validator->validName($username) && !$dataLayer->userExists($username))
+            {
                 $user->setUsername($username);
             } else {
+                $this->_f3->set('errors["user"]', "Username cannot be blank and must contain only characters, username
+                already exists");
+            }
+            **/
+            if(!$validator->validName($username)){
                 $this->_f3->set('errors["user"]', "Username cannot be blank and must contain only characters");
             }
+            if($dataLayer->userExists($username)){
+                $this->_f3->set('errors["user"]', "Username already exist!");
+            }
+            else{
+                $user->setUsername($username);
+            }
+
+
 
             if($validator->validName($fname)){
                 $user->setFname($fname);
