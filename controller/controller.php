@@ -152,11 +152,11 @@ class Controller {
             //echo "THIS IS THE ID: " . $result[0]['user_id'] . "<br>";
             if($result){
                 if($result[0]['isPro']){
-                    $this->_user = new ProUser($result[0]['user_id'], $result[0]['username'], $result[0]['name'],"", $result[0]['age'], $result[0]['grade'], $result[0]['passwd'], true);
+                    $this->_user = new ProUser($result[0]['username'], $result[0]['name'],"", $result[0]['age'], $result[0]['grade'], $result[0]['passwd'], true);
                     $this->_user->setSubject($result[0]['subject']);
                     $_SESSION['un'] = $this->_user;
                 } else {
-                    $this->_user = new User($result[0]['user_id'], $result[0]['username'], $result[0]['name'],"", $result[0]['age'], $result[0]['grade'], $result[0]['passwd'], false);
+                    $this->_user = new User($result[0]['username'], $result[0]['name'],"", $result[0]['age'], $result[0]['grade'], $result[0]['passwd'], false);
                     $_SESSION['un'] = $this->_user;
                 }
                 //var_dump($result);
@@ -265,8 +265,8 @@ class Controller {
                 } else {
                     $_SESSION['un'] = $user;
                     $dataLayer->insertUser($user);
-                    $result = $dataLayer->getUser($user->getUsername(), $user->getPasswd());
-                    $_SESSION['un'] = new User($result[0]['user_id'], $result[0]['username'], $result[0]['name'],"", $result[0]['age'], $result[0]['grade'], $result[0]['passwd'], false);
+                    //$result = $dataLayer->getUser($user->getUsername(), $user->getPasswd());
+                    //$_SESSION['un'] = new User($result[0]['user_id'], $result[0]['username'], $result[0]['name'],"", $result[0]['age'], $result[0]['grade'], $result[0]['passwd'], false);
                     $this->_f3->reroute('account');  //GET
                 }
             }
@@ -296,9 +296,9 @@ class Controller {
             //var_dump($_SESSION);
             if(empty($this->_f3->get('errors'))) {
                 $dataLayer->insertUser($_SESSION['userCreate']);
-                //$_SESSION['un'] = $_SESSION['userCreate'];
-                $result = $dataLayer->getUser($_SESSION['userCreate']->getUsername(), $_SESSION['userCreate']->getPasswd());
-                $_SESSION['un'] = new ProUser($result[0]['user_id'], $result[0]['username'], $result[0]['name'],"", $result[0]['age'], $result[0]['grade'], $result[0]['passwd'], true, $result[0]['subject']);
+                $_SESSION['un'] = $_SESSION['userCreate'];
+                //$result = $dataLayer->getUser($_SESSION['userCreate']->getUsername(), $_SESSION['userCreate']->getPasswd());
+                //$_SESSION['un'] = new ProUser($result[0]['user_id'], $result[0]['username'], $result[0]['name'],"", $result[0]['age'], $result[0]['grade'], $result[0]['passwd'], true, $result[0]['subject']);
                 $this->_f3->reroute('account');
                 unset($_SESSION['userCreate']);
             }
@@ -320,7 +320,8 @@ class Controller {
 
     function allCreations(){
         global $dataLayer;
-        $this->_f3->set('creations', $dataLayer->getCreations($_SESSION['un']->getUserId()));
+        //var_dump($_SESSION['un']);
+        $this->_f3->set('creations', $dataLayer->getCreations($_SESSION['un']->getUsername()));
         $view = new Template();
         //echo the view and invoke its render method and supply the path
         echo $view->render('views/creations.html');

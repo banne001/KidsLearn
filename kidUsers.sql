@@ -29,8 +29,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `kidUsers` (
-  `user_id` int(3) NOT NULL,
-  `username` varchar(100) DEFAULT NULL,
+  `username` varchar(100) NOT NULL PRIMARY KEY,
   `name` varchar(100) DEFAULT NULL,
   `age` int(3) DEFAULT NULL,
   `grade` int(2) DEFAULT NULL,

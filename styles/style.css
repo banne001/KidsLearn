@@ -99,3 +99,7 @@ a{
 img{
     width: 100%;
 }
+#canvasimg{
+    display: none;
+    visibility: hidden;
+}

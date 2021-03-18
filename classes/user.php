@@ -1,6 +1,5 @@
 <?php
 class User{
-    private $_userId;
     private $_username;
     private $_fname;
     private $_lname;
@@ -19,9 +18,8 @@ class User{
      * @param $_passwd
      * @param $_isPro
      */
-    public function __construct($userId = "", $_username = "", $_fname = "", $_lname = "", $_age = "", $_grade = "", $_passwd = "", $_isPro = false)
+    public function __construct( $_username = "", $_fname = "", $_lname = "", $_age = "", $_grade = "", $_passwd = "", $_isPro = false)
     {
-        $this->_userId = $userId;
         $this->_username = $_username;
         $this->_fname = $_fname;
         $this->_lname = $_lname;
@@ -38,24 +36,6 @@ class User{
     {
         $this->_passwd = $passwd;
     }
-
-    /**
-     * @return mixed|string
-     */
-    public function getUserId()
-    {
-        return $this->_userId;
-    }
-
-    /**
-     * @param mixed|string $userId
-     */
-    public function setUserId($userId)
-    {
-        $this->_userId = $userId;
-    }
-
-
 
     /**
      * @return mixed

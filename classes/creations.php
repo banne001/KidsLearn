@@ -4,7 +4,7 @@ class Creations
     private $_name;
     private $_desc;
     private $_object;
-    private $_userId;
+    private $_username;
     private $_image;
 
     /**
@@ -12,15 +12,15 @@ class Creations
      * @param $_name
      * @param $_desc
      * @param $_object
-     * @param $_userId
+     * @param $_username
      * @param $_image
      */
-    public function __construct($_name="", $_desc="", $_object="", $_userId="", $_image="")
+    public function __construct($_name="", $_desc="", $_object="", $_username="", $_image="")
     {
         $this->_name = $_name;
         $this->_desc = $_desc;
         $this->_object = $_object;
-        $this->_userId = $_userId;
+        $this->_username = $_username;
         $this->_image = $_image;
     }
 
@@ -75,7 +75,7 @@ class Creations
     /**
      * @return mixed
      */
-    public function getUserId()
+    public function getUsername()
     {
         return $this->_userId;
     }
@@ -83,7 +83,7 @@ class Creations
     /**
      * @param mixed $userId
      */
-    public function setUserId($userId)
+    public function setUsername($userId)
     {
         $this->_userId = $userId;
     }

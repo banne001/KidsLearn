@@ -7,9 +7,9 @@ class ProUser extends User
      * PremiumMember constructor.
      * @param string $subject
      */
-    public function __construct($userId = "", $_username = "", $_fname = "", $_lname = "", $_age = "", $_grade = "", $_passwd = "", $_isPro = false, $subject="")
+    public function __construct($_username = "", $_fname = "", $_lname = "", $_age = "", $_grade = "", $_passwd = "", $_isPro = false, $subject="")
     {
-        parent::__construct($userId, $_username, $_fname, $_lname, $_age, $_grade, $_passwd, $_isPro);
+        parent::__construct($_username, $_fname, $_lname, $_age, $_grade, $_passwd, $_isPro);
         $this->_subject = $subject;
     }
 

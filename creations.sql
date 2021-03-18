@@ -31,9 +31,11 @@ SET time_zone = "+00:00";
 CREATE TABLE `creations` (
   `create_id` int(3) NOT NULL,
   `name` varchar(100) DEFAULT NULL,
-  `description` varchar(3) DEFAULT NULL,
+  `description` varchar(1000) DEFAULT NULL,
   `object` varchar(100) DEFAULT NULL,
-  `user_id` int(3) DEFAULT NULL
+  `user_id` int(3) DEFAULT NULL,
+  `image` varchar(1000),
+  FOREIGN KEY (username) REFERENCES kidUsers(username)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --

@@ -14,7 +14,7 @@ class DataLayer{
      * @param $user Object
      */
     function insertUser($user){
-    //echo"hello world";
+        //echo "hello world";
 
         ///build query
         $sql = "INSERT INTO kidUsers (username, name, age, grade, passwd, isPro, subject) 
@@ -27,12 +27,7 @@ class DataLayer{
         if($user instanceof ProUser){
             $subject = $user->getSubject();
         }
-       // $username =  $user->getUsername();
-        //global $dataLayer;
 
-        //if($dataLayer->userExists($username)){
-           // return;
-        //}
         //bind the parameters
         $name = $user->getFname() . " " . $user->getLname();
         $pw = sha1($user->getPasswd());
@@ -47,6 +42,8 @@ class DataLayer{
 
         //process results
         $statement->execute();
+        //$arr = $statement->errorInfo();
+        //print_r($arr);
 
     }
     //function for checking if the user already exists in the database
@@ -77,19 +74,20 @@ class DataLayer{
     function insertCreation($create, $user){
         //echo "I HAVE CREATTED SOMETHINGGG";
         ///build query
-        $sql = "INSERT INTO creations (name, description, object, user_id, image) 
-                VALUES (:name, :description, :object, :user_id, :image)";
+        $sql = "INSERT INTO creations (name, description, object, username, image) 
+                VALUES (:name, :description, :object, :username, :image)";
         //var_dump($create);
         //var_dump($user);
         //prepare the statement
         $statement = $this->_dbh->prepare($sql);
-
+        //echo "THIS IS THE USERNAME: " . $user->getUsername();
         //bind the parameters
         $statement->bindParam(':name', $create->getName(), PDO::PARAM_STR);
         $statement->bindParam(':description', $create->getDesc(), PDO::PARAM_STR);
         $statement->bindParam(':object', $create->getObject(), PDO::PARAM_STR);
-        $statement->bindParam(':user_id', $user->getUserId(), PDO::PARAM_INT);
+        $statement->bindParam(':username', $user->getUsername(), PDO::PARAM_STR);
         $statement->bindParam(':image', $create->getImage(), PDO::PARAM_STR);
+
 
         //process results
         $statement->execute();
@@ -118,17 +116,21 @@ class DataLayer{
         }
     }
 
-    function getCreations($userId){
+    function getCreations($username){
+        //echo "INSIDE A HERRE". $username;
         $sql = "SELECT creations.name, description, object, image FROM `creations`, `kidUsers` 
-                WHERE kidUsers.user_id = creations.user_id AND creations.user_id = :id";
+                WHERE kidUsers.username = creations.username AND creations.username = :username";
 
         $statement = $this->_dbh->prepare($sql);
 
-        $statement->bindParam(':id', $userId, PDO::PARAM_INT);
+        $statement->bindParam(':username', $username, PDO::PARAM_STR);
 
         $statement->execute();
+        //$arr = $statement->errorInfo();
+        //print_r($arr);
 
         return $statement->fetchAll(PDO::FETCH_ASSOC);
+
     }
 
     /**
