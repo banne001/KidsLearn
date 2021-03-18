@@ -29,17 +29,43 @@ class DataLayer{
         }
         //bind the parameters
         $name = $user->getFname() . " " . $user->getLname();
+        $pw = sha1($user->getPasswd());
         $statement->bindParam(':username', $user->getUsername(), PDO::PARAM_STR);
         $statement->bindParam(':name', $name , PDO::PARAM_STR);
         //$statement->bindParam(':name', $user->getLname(), PDO::PARAM_STR);
         $statement->bindParam(':age', $user->getAge(), PDO::PARAM_INT);
         $statement->bindParam(':grade', $user->getGrade(), PDO::PARAM_INT);
-        $statement->bindParam(':passwd', $user->getPasswd(), PDO::PARAM_STR);
+        $statement->bindParam(':passwd', $pw, PDO::PARAM_STR);
         $statement->bindParam(':isPro', $user->getIsPro(), PDO::PARAM_INT);
         $statement->bindParam(':subject', $subject, PDO::PARAM_STR);
 
         //process results
         $statement->execute();
+
+    }
+    //function for checking if the user already exists in the database
+    public function userExists($username)
+    {
+
+        //prepared statements for added security $this->_dbh->prepare
+        $query = $this->_dbh->prepare("SELECT COUNT(`id`) FROM kidUsers WHERE username = ?");
+        $query->bindValue(1, $username);
+
+        try {
+            //execute the query
+            $query->execute();
+            $rows = $query->fetchColumn();
+
+            //if a row is returned...user already exists
+            if ($rows == 1) {
+                return true;
+            } else {
+                return false;
+            }
+            //catch the exception
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
     }
 
     function insertCreation($create, $user){
@@ -70,9 +96,10 @@ class DataLayer{
         $sql = "SELECT * FROM kidUsers WHERE username = :name AND passwd = :password";
 
         $statement = $this->_dbh->prepare($sql);
+        $pw = sha1($password);
 
         $statement->bindParam(':name', $username, PDO::PARAM_STR);
-        $statement->bindParam(':password', $password, PDO::PARAM_STR);
+        $statement->bindParam(':password', $pw, PDO::PARAM_STR);
 
         $statement->execute();
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
