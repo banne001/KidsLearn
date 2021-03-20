@@ -118,7 +118,7 @@ class DataLayer{
 
     function getCreations($username){
         //echo "INSIDE A HERRE". $username;
-        $sql = "SELECT creations.name, description, object, image FROM `creations`, `kidUsers` 
+        $sql = "SELECT create_id, creations.name, description, object, image FROM `creations`, `kidUsers` 
                 WHERE kidUsers.username = creations.username AND creations.username = :username";
 
         $statement = $this->_dbh->prepare($sql);
@@ -131,6 +131,16 @@ class DataLayer{
 
         return $statement->fetchAll(PDO::FETCH_ASSOC);
 
+    }
+
+    function deleteCreation($id){
+
+        $sql = "DELETE FROM creations WHERE create_id = :id";
+        $statement = $this->_dbh->prepare($sql);
+        $statement->bindParam(':id', $id, PDO::PARAM_INT);
+        $statement->execute();
+        //$arr = $statement->errorInfo();
+        //print_r($arr);
     }
 
     function resetPassword($username){

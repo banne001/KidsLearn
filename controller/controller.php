@@ -315,6 +315,7 @@ class Controller {
     function allCreations(){
         global $dataLayer;
         //var_dump($_SESSION['un']);
+
         $this->_f3->set('creations', $dataLayer->getCreations($_SESSION['un']->getUsername()));
         $view = new Template();
         //echo the view and invoke its render method and supply the path
@@ -373,6 +374,12 @@ class Controller {
         $view = new Template();
         //echo the view and invoke its render method and supply the path
         echo $view->render('views/changePassword.html');
+    }
+
+    function deleteCreation($id){
+        global $dataLayer;
+        $dataLayer->deleteCreation($id);
+        $this->_f3->reroute('creations');
     }
 
 }

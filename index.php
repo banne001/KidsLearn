@@ -46,18 +46,18 @@ $f3->route('GET /fruits', function(){
     $controller->fruits();
 });
 //create route
-$f3->route('GET|POST /create', function($f3){
+$f3->route('GET|POST /create', function(){
     global $controller;
     $controller->create();
 });
 //create1 route
-$f3->route('GET|POST /createType', function($f3){
+$f3->route('GET|POST /createType', function(){
     global $controller;
     $controller->create1();
 
 });
 //create1 route
-$f3->route('GET /createFinish', function($f3){
+$f3->route('GET /createFinish', function(){
     global $controller;
     $controller->createFinish();
 });
@@ -68,38 +68,42 @@ $f3->route('GET|POST /signIn', function(){
 
 });
 //sign up route
-$f3->route('GET|POST /signUp', function($f3){
+$f3->route('GET|POST /signUp', function(){
     global $controller;
     $controller->signUp();
 });
 
 //sign up route
-$f3->route('GET|POST /signUpPro', function($f3){
+$f3->route('GET|POST /signUpPro', function(){
     global $controller;
     $controller->signUpPro();
 });
 
 //sign up route
-$f3->route('GET /account', function($f3){
+$f3->route('GET /account', function(){
     global $controller;
     $controller->account();
 });
 //sign up route
-$f3->route('GET /creations', function($f3){
+$f3->route('GET /creations', function(){
     global $controller;
     $controller->allCreations();
 });
-$f3->route('GET /logout', function($f3){
+$f3->route('GET /logout', function(){
     global $controller;
     $controller->logout();
 });
-$f3->route('GET|POST /forgot', function($f3){
+$f3->route('GET|POST /forgot', function(){
     global $controller;
     $controller->forgot();
 });
-$f3->route('GET|POST /changePassword', function($f3){
+$f3->route('GET|POST /changePassword', function(){
     global $controller;
     $controller->changePassword();
+});
+$f3->route('GET /delete/@id', function($f3, $params){
+    global $controller;
+    $controller->deleteCreation($params['id']);
 });
 //Run fat free
 $f3->run();
