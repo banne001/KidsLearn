@@ -97,5 +97,9 @@ $f3->route('GET|POST /forgot', function($f3){
     global $controller;
     $controller->forgot();
 });
+$f3->route('GET|POST /changePassword', function($f3){
+    global $controller;
+    $controller->changePassword();
+});
 //Run fat free
 $f3->run();

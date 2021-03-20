@@ -146,7 +146,19 @@ class DataLayer{
         //$arr = $statement->errorInfo();
         //print_r($arr);
     }
+    function setPassword($username, $password){
+        $sql = "UPDATE kidUsers SET passwd = sha1(:password) WHERE username = :username";
 
+        //prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+        $statement->bindParam(':username', $username, PDO::PARAM_STR);
+        $statement->bindParam(':password', $password, PDO::PARAM_STR);
+
+        //process results
+        $statement->execute();
+        //$arr = $statement->errorInfo();
+        //print_r($arr);
+    }
     /**
      * @return Array a limited list of indoor interests
      */

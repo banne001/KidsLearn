@@ -344,4 +344,35 @@ class Controller {
         //echo the view and invoke its render method and supply the path
         echo $view->render('views/forgot.html');
     }
+
+    function changePassword(){
+        global $dataLayer;
+        global $validator;
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $password = $_POST['pw'];
+            $cpassword = $_POST['cpw'];
+            if($validator->validPassword($password)){
+                if($password == $cpassword){
+                    $_SESSION['un']->setPasswd($password);
+                    $dataLayer->setPassword($_SESSION['un']->getUsername(), $password);
+                    $this->_f3->set('success', "Success!!");
+                } else {
+                    $this->_f3->set('errors', "Not the same password");
+                }
+            } else {
+                $this->_f3->set('errors', "Password needs at least 8 characters");
+            }
+        }
+        $this->_f3->set('username', isset($username) ? $username: "");
+        $this->_f3->set('fname', isset($fname) ? $fname: "");
+        $this->_f3->set('lname', isset($lname) ? $lname: "");
+        $this->_f3->set('age', isset($age) ? $age: "");
+        $this->_f3->set('grade', isset($grade) ? $grade: "");
+
+        //creating a new view using the Template constructor
+        $view = new Template();
+        //echo the view and invoke its render method and supply the path
+        echo $view->render('views/changePassword.html');
+    }
+
 }

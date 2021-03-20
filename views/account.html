@@ -26,7 +26,9 @@
         <check if="{{ @details instanceof ProUser }}">
             <li class="list-group-item bg-dark">Subject: {{ @details->getSubject() }}</li>
         </check>
+        <li class="list-group-item bg-dark"><a href="changePassword" class="btn btn-danger">Change Password</a></li>
     </ul>
+
 
 </div>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
