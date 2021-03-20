@@ -201,17 +201,15 @@ class Controller {
                 already exists");
             }
             **/
-            if(!$validator->validName($username)){
-                $this->_f3->set('errors["user"]', "Username cannot be blank and must contain only characters");
+            if(!$validator->validUsername($username)){
+                $this->_f3->set('errors["user"]', "Username cannot be blank and no spaces");
             }
-            if($dataLayer->userExists($username)){
+            else if($dataLayer->userExists($username)){
                 $this->_f3->set('errors["user"]', "Username already exist!");
             }
             else{
                 $user->setUsername($username);
             }
-
-
 
             if($validator->validName($fname)){
                 $user->setFname($fname);
@@ -243,16 +241,16 @@ class Controller {
                 }
             }
             if($validator->validPassword($password)){
-                //$_SESSION['password'] = $password;
+                if($password == $cpassword){
+                    $user->setPasswd($password);
+                } else {
+                    $this->_f3->set('errors["cpassword"]', "Not the same to password");
+                }
             } else {
-                $this->_f3->set('errors["password"]', "Password needs ...");
+                $this->_f3->set('errors["password"]', "Password needs at least 8 characters");
             }
 
-            if($password == $cpassword){
-                $user->setPasswd($password);
-            } else {
-                $this->_f3->set('errors["cpassword"]', "Not the same to password");
-            }
+
             //var_dump($user);
             //passed all cases
             if(empty($this->_f3->get('errors'))) {
@@ -265,8 +263,6 @@ class Controller {
                 } else {
                     $_SESSION['un'] = $user;
                     $dataLayer->insertUser($user);
-                    //$result = $dataLayer->getUser($user->getUsername(), $user->getPasswd());
-                    //$_SESSION['un'] = new User($result[0]['user_id'], $result[0]['username'], $result[0]['name'],"", $result[0]['age'], $result[0]['grade'], $result[0]['passwd'], false);
                     $this->_f3->reroute('account');  //GET
                 }
             }
@@ -285,20 +281,18 @@ class Controller {
     }
     function signUpPro(){
         global $dataLayer;
+        global $validator;
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $subject = $_POST['subject'];
-            //TODO: validate maybe....
-            if(!empty($subject)){
+            if(!empty($subject) && $validator->validSubject($subject)){
                 $_SESSION['userCreate']->setSubject($subject);
             } else {
-                $this->_f3->set('errors["subject"]', "Please enter a subject");
+                $this->_f3->set('errors["subject"]', "Please enter a subject that is listed below: " . implode(", ", $dataLayer->getSubjects()));
             }
             //var_dump($_SESSION);
             if(empty($this->_f3->get('errors'))) {
                 $dataLayer->insertUser($_SESSION['userCreate']);
                 $_SESSION['un'] = $_SESSION['userCreate'];
-                //$result = $dataLayer->getUser($_SESSION['userCreate']->getUsername(), $_SESSION['userCreate']->getPasswd());
-                //$_SESSION['un'] = new ProUser($result[0]['user_id'], $result[0]['username'], $result[0]['name'],"", $result[0]['age'], $result[0]['grade'], $result[0]['passwd'], true, $result[0]['subject']);
                 $this->_f3->reroute('account');
                 unset($_SESSION['userCreate']);
             }
@@ -332,5 +326,22 @@ class Controller {
         session_destroy();
         $_SESSION = array();
         $this->_f3->reroute('/');
+    }
+    function forgot(){
+        global $dataLayer;
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $username = trim($_POST['username']);
+            if($dataLayer->userExists($username)){
+                $dataLayer->resetPassword($username);
+                $this->_f3->set('success', "Your password is 'Password'");
+                //$this->_f3->reroute('account');  //GET
+            } else {
+                $this->_f3->set('errors', "Username does not exist");
+            }
+        }
+        $this->_f3->set('username', isset($username) ? $username: "");
+        $view = new Template();
+        //echo the view and invoke its render method and supply the path
+        echo $view->render('views/forgot.html');
     }
 }

@@ -133,6 +133,20 @@ class DataLayer{
 
     }
 
+    function resetPassword($username){
+        $sql = "UPDATE kidUsers SET passwd = sha1('Password') WHERE username = :username";
+
+        //prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        $statement->bindParam(':username', $username, PDO::PARAM_STR);
+
+        //process results
+        $statement->execute();
+        //$arr = $statement->errorInfo();
+        //print_r($arr);
+    }
+
     /**
      * @return Array a limited list of indoor interests
      */
@@ -146,6 +160,11 @@ class DataLayer{
      */
     function getExtensions(){
         return array('png', 'jpeg', 'jpg');
+    }
+
+    function getSubjects(){
+        return array('math', 'english', 'science', 'history', 'business', 'social studies', 'psychology', 'economics',
+            'art', 'theater', 'music', 'language arts', 'home economics');
     }
 }
 

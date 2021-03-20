@@ -23,11 +23,14 @@ class Validation {
         return !empty($user) && ctype_alpha($user);
     }
 
+    function validUsername($user){
+        return preg_match("/^[\S]+$/", $user);
+    }
+
     /** validPassword() returns true password is valid */
     function validPassword($password)
     {
-        //TODO: do we need a requirement...?
-        return true;
+        return strlen($password) >= 8;
     }
 
     /** validAge() returns the age is numeric and less than 118 */
@@ -38,12 +41,13 @@ class Validation {
     function validGrade($grade){
         return is_numeric($grade) && $grade <=12;
     }
-    function validObject($type){
-        return in_array($type, $this->_dataLayer->getTypes());
+
+    function validSubject($subject){
+        return in_array(strtolower($subject), $this->_dataLayer->getSubjects());
     }
+
     function validExtension($ext)
     {
-
         return in_array($ext, $this->_dataLayer->getExtensions());
     }
 

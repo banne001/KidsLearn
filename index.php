@@ -93,5 +93,9 @@ $f3->route('GET /logout', function($f3){
     global $controller;
     $controller->logout();
 });
+$f3->route('GET|POST /forgot', function($f3){
+    global $controller;
+    $controller->forgot();
+});
 //Run fat free
 $f3->run();
