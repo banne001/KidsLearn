@@ -1,4 +1,10 @@
 <?php
+/**
+ * Blezyl Santos and Sarah Mehri
+ * Kids Learn Website - controller.php
+ * Version 1.0
+ * controller class for controlling the routes in f3
+ **/
 
 class Controller {
 
@@ -14,6 +20,9 @@ class Controller {
         $this->_f3 = $_f3;
     }
 
+    /**
+     * home route for user information
+     */
     function home(){
         //creating a new view using the Template constructor
         $view = new Template();
@@ -21,6 +30,9 @@ class Controller {
         echo $view->render('views/home.html');
     }
 
+    /**
+     * shape route for user information
+     */
     function shapes(){
         //creating a new view using the Template constructor
         $view = new Template();
@@ -28,6 +40,9 @@ class Controller {
         echo $view->render('views/shapes.html');
     }
 
+    /**
+     * animals route for user information
+     */
     function animals(){
         //creating a new view using the Template constructor
         $view = new Template();
@@ -35,6 +50,9 @@ class Controller {
         echo $view->render('views/animals.html');
     }
 
+    /**
+     * fruits route for user information
+     */
     function fruits(){
         //creating a new view using the Template constructor
         $view = new Template();
@@ -42,6 +60,9 @@ class Controller {
         echo $view->render('views/fruits.html');
     }
 
+    /**
+     * create route for user creation
+     */
     function create(){
         //var_dump($_SESSION['un']);
         global $validator;
@@ -85,13 +106,13 @@ class Controller {
         echo $view->render('views/create.html');
     }
 
+    /**
+     * create1 route for user's creation
+     */
     function create1(){
         global $dataLayer;
         global $validator;
-        //global $proUser;
-        //global $proUser;
         $creation = new Creations();
-        //var_dump($_SESSION['un']);
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             //var_dump($_POST);
             $oname = $_POST['oname'];
@@ -129,6 +150,9 @@ class Controller {
         echo $view->render('views/create1.html');
     }
 
+    /**
+     * createFinish route for pro user summary of creation
+     */
     function createFinish(){
         //global $order;
         //creating a new view using the Template constructor
@@ -136,12 +160,12 @@ class Controller {
         //echo the view and invoke its render method and supply the path
         echo $view->render('views/createFinish.html');
         unset($_SESSION['creation']);
-        //$temp = $_SESSION['un'];
-        //session_destroy();
-        //$_SESSION['un'] = $temp;
         //var_dump($_SESSION);
     }
 
+    /**
+     * singIn route for user to sign in
+     */
     function signIn(){
         global $dataLayer;
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -173,6 +197,9 @@ class Controller {
         echo $view->render('views/signIn.html');
     }
 
+    /**
+     * signup route for user information
+     */
     function signUp(){
         global $validator;
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -279,6 +306,10 @@ class Controller {
         echo $view->render('views/signUp.html');
 
     }
+
+    /**
+     * signUpPro route for Pro user
+     */
     function signUpPro(){
         global $dataLayer;
         global $validator;
@@ -303,6 +334,9 @@ class Controller {
         echo $view->render('views/signUpPro.html');
     }
 
+    /**
+     * account route for user information
+     */
     function account(){
         //var_dump($_SESSION['un']);
         $this->_f3->set('details', $_SESSION['un']);
@@ -312,6 +346,9 @@ class Controller {
         echo $view->render('views/account.html');
     }
 
+    /**
+     * allCreation route for user information
+     */
     function allCreations(){
         global $dataLayer;
         //var_dump($_SESSION['un']);
@@ -322,12 +359,19 @@ class Controller {
         echo $view->render('views/creations.html');
     }
 
+    /**
+     * logout route for user to sign out
+     */
     function logout()
     {
         session_destroy();
         $_SESSION = array();
         $this->_f3->reroute('/');
     }
+
+    /**
+     * forgot route for user forgetting password
+     */
     function forgot(){
         global $dataLayer;
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -346,6 +390,9 @@ class Controller {
         echo $view->render('views/forgot.html');
     }
 
+    /**
+     * changePassword route for user to change pass
+     */
     function changePassword(){
         global $dataLayer;
         global $validator;
@@ -376,6 +423,9 @@ class Controller {
         echo $view->render('views/changePassword.html');
     }
 
+    /**
+     * deletionCreation route for user to delete the creation
+     */
     function deleteCreation($id){
         global $dataLayer;
         $dataLayer->deleteCreation($id);

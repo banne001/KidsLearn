@@ -1,4 +1,11 @@
 <?php
+/**
+ * Blezyl Santos and Sarah Mehri
+ * Kids Learn Website - creations.php
+ * Version 1.0
+ * creation class for setter and getter of
+ * name, type, desc, username and image
+**/
 class Creations
 {
     private $_name;
@@ -24,15 +31,15 @@ class Creations
         $this->_image = $_image;
     }
 
-    /**
-     * @return mixed
+    /** Getting the name of user's creation
+     * @return mixed name
      */
     public function getName()
     {
         return $this->_name;
     }
 
-    /**
+    /**Setting the name of user's creation
      * @param mixed $name
      */
     public function setName($name)
@@ -40,15 +47,15 @@ class Creations
         $this->_name = $name;
     }
 
-    /**
-     * @return mixed
+    /** Getting the description of user's creation
+     * @return mixed description of creation
      */
     public function getDesc()
     {
         return $this->_desc;
     }
 
-    /**
+    /**Setting the description, user provided
      * @param mixed $desc
      */
     public function setDesc($desc)
@@ -56,15 +63,15 @@ class Creations
         $this->_desc = $desc;
     }
 
-    /**
-     * @return mixed
+    /** Getting the type of user's creation
+     * @return mixed type of object, user's creation
      */
     public function getObject()
     {
         return $this->_object;
     }
 
-    /**
+    /**Setting the type of object user draw
      * @param mixed $object
      */
     public function setObject($object)
@@ -72,15 +79,15 @@ class Creations
         $this->_object = $object;
     }
 
-    /**
-     * @return mixed
+    /** Getting the username of user's creation
+     * @return mixed username
      */
     public function getUsername()
     {
         return $this->_userId;
     }
 
-    /**
+    /**Setting userId's creation
      * @param mixed $userId
      */
     public function setUsername($userId)
@@ -88,16 +95,16 @@ class Creations
         $this->_userId = $userId;
     }
 
-    /**
-     * @return mixed
+    /** Getting the image of user's creation
+     * @return mixed the image
      */
     public function getImage()
     {
         return $this->_image;
     }
 
-    /**
-     * @param mixed $image
+    /**Setting the image of user's creation
+     * @param mixed $image of user's creaion
      */
     public function setImage($image)
     {

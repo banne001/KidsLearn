@@ -1,4 +1,10 @@
 <?php
+/**
+ * Blezyl Santos and Sarah Mehri
+ * Kids Learn Website - user.php
+ * Version 1.0
+ * user class for setter and getter of sign up
+ **/
 class User{
     private $_username;
     private $_fname;
@@ -29,7 +35,7 @@ class User{
         $this->_isPro = $_isPro;
     }
 
-    /**
+    /**Setting the password for user
      * @param mixed|string $passwd
      */
     public function setPasswd($passwd)
@@ -37,15 +43,15 @@ class User{
         $this->_passwd = $passwd;
     }
 
-    /**
-     * @return mixed
+    /**Getting the username of user
+     * @return mixed username of user
      */
     public function getUsername()
     {
         return $this->_username;
     }
 
-    /**
+    /**Setting the username of user class
      * @param mixed $username
      */
     public function setUsername($username)
@@ -53,15 +59,15 @@ class User{
         $this->_username = $username;
     }
 
-    /**
-     * @return mixed
+    /**Getting the first name of user
+     * @return mixed first name of user
      */
     public function getFname()
     {
         return $this->_fname;
     }
 
-    /**
+    /**Setting the first name of user
      * @param mixed $fname
      */
     public function setFname($fname)
@@ -69,15 +75,15 @@ class User{
         $this->_fname = $fname;
     }
 
-    /**
-     * @return mixed
+    /**Getting the last name of user
+     * @return mixed last name of user
      */
     public function getLname()
     {
         return $this->_lname;
     }
 
-    /**
+    /**Setting the last name of user
      * @param mixed $lname
      */
     public function setLname($lname)
@@ -85,58 +91,60 @@ class User{
         $this->_lname = $lname;
     }
 
-    /**
-     * @return mixed
+    /**Getting the age of user
+     * @return mixed age of user
      */
     public function getAge()
     {
         return $this->_age;
     }
 
-    /**
-     * @param mixed $age
+    /**Setting the age of user
+     * @param mixed $age of user
      */
     public function setAge($age)
     {
         $this->_age = $age;
     }
 
-    /**
-     * @return mixed
+    /** Getting the grade of user
+     * @return mixed grade of user
      */
     public function getGrade()
     {
         return $this->_grade;
     }
 
-    /**
-     * @param mixed $grade
+    /** Setting the Grade of user
+     * @param mixed $grade of user
      */
     public function setGrade($grade)
     {
         $this->_grade = $grade;
     }
 
-    /**
-     * @return mixed
+    /** Getting the user, to check for proUser
+     * @return mixed boolean of proUser checkbox
      */
     public function getIsPro()
     {
         return $this->_isPro;
     }
+
+    /** Getting the password for user
+     * @return mixed|string for user
+     */
     public function getPasswd()
     {
         return $this->_passwd;
     }
 
-    /**
-     * @param mixed $isPro
+    /**Setting if the user wanted the proUser account
+     * @param mixed $isPro boolean value
      */
     public function setIsPro($isPro)
     {
         $this->_isPro = $isPro;
     }
-
-
 
 }

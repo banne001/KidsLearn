@@ -84,23 +84,32 @@ $f3->route('GET /account', function(){
     global $controller;
     $controller->account();
 });
+
 //sign up route
 $f3->route('GET /creations', function(){
     global $controller;
     $controller->allCreations();
 });
+
+//logout route
 $f3->route('GET /logout', function(){
     global $controller;
     $controller->logout();
 });
+
+//forgot route
 $f3->route('GET|POST /forgot', function(){
     global $controller;
     $controller->forgot();
 });
+
+//change password route
 $f3->route('GET|POST /changePassword', function(){
     global $controller;
     $controller->changePassword();
 });
+
+//delete route
 $f3->route('GET /delete/@id', function($f3, $params){
     global $controller;
     $controller->deleteCreation($params['id']);

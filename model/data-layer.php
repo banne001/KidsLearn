@@ -4,6 +4,10 @@ class DataLayer{
 
     private $_dbh;
 
+    /**
+     * DataLayer constructor.
+     * @param $dbh
+     */
     function __construct($dbh)
     {
         $this->_dbh = $dbh;
@@ -46,7 +50,12 @@ class DataLayer{
         //print_r($arr);
 
     }
-    //function for checking if the user already exists in the database
+
+    /**
+     * function for checking if the user already exists in the database
+     * @param $username
+     * @return bool
+     */
     public function userExists($username)
     {
 
@@ -71,8 +80,13 @@ class DataLayer{
         }
     }
 
+    /**
+     * function for insertion of creations table
+     * @param $create
+     * @param $user
+     */
     function insertCreation($create, $user){
-        //echo "I HAVE CREATTED SOMETHINGGG";
+
         ///build query
         $sql = "INSERT INTO creations (name, description, object, username, image) 
                 VALUES (:name, :description, :object, :username, :image)";
@@ -96,6 +110,12 @@ class DataLayer{
 
     }
 
+    /**
+     * function for getting the username and password for sign in
+     * @param $username
+     * @param $password
+     * @return false
+     */
     function getUser($username, $password){
         $sql = "SELECT * FROM kidUsers WHERE username = :name AND passwd = :password";
 
@@ -116,6 +136,11 @@ class DataLayer{
         }
     }
 
+    /**
+     * function for getting the creation of pro User
+     * @param $username
+     * @return mixed
+     */
     function getCreations($username){
         //echo "INSIDE A HERRE". $username;
         $sql = "SELECT create_id, creations.name, description, object, image FROM `creations`, `kidUsers` 
@@ -133,6 +158,10 @@ class DataLayer{
 
     }
 
+    /**
+     * function for deletion of creation
+     * @param $id
+     */
     function deleteCreation($id){
 
         $sql = "DELETE FROM creations WHERE create_id = :id";
@@ -143,6 +172,10 @@ class DataLayer{
         //print_r($arr);
     }
 
+    /**
+     * function for resetting of password
+     * @param $username
+     */
     function resetPassword($username){
         $sql = "UPDATE kidUsers SET passwd = sha1('Password') WHERE username = :username";
 
@@ -156,6 +189,12 @@ class DataLayer{
         //$arr = $statement->errorInfo();
         //print_r($arr);
     }
+
+    /**
+     * function for setting the password
+     * @param $username
+     * @param $password
+     */
     function setPassword($username, $password){
         $sql = "UPDATE kidUsers SET passwd = sha1(:password) WHERE username = :username";
 
@@ -170,7 +209,8 @@ class DataLayer{
         //print_r($arr);
     }
     /**
-     * @return Array a limited list of indoor interests
+     * getting the type of creations
+     * @return Array a limited list of types
      */
     function getTypes()
     {
@@ -178,12 +218,17 @@ class DataLayer{
     }
 
     /**
+     * type of pictures
      * @return Array of accepatable type of pictures
      */
     function getExtensions(){
         return array('png', 'jpeg', 'jpg');
     }
 
+    /**
+     * get the subject for pro user
+     * @return string[]
+     */
     function getSubjects(){
         return array('math', 'english', 'science', 'history', 'business', 'social studies', 'psychology', 'economics',
             'art', 'theater', 'music', 'language arts', 'home economics');

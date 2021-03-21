@@ -1,4 +1,10 @@
 <?php
+/**
+ * Blezyl Santos and Sarah Mehri
+ * Kids Learn Website - proUser.php
+ * Version 1.0
+ * proUser class for setter and getter of proUser class
+ **/
 class ProUser extends User
 {
     private $_subject;
@@ -14,16 +20,16 @@ class ProUser extends User
     }
 
 
-    /**
-     * @return mixed
+    /**Getting the subject of proUser member
+     * @return mixed subject of Pro User likes
      */
     public function getSubject()
     {
         return $this->_subject;
     }
 
-    /**
-     * @param mixed $subject
+    /**Setting the subject pro user like
+     * @param mixed $subject subject of Pro User likes
      */
     public function setSubject($subject)
     {

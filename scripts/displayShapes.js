@@ -1,3 +1,12 @@
+/**
+ * Blezyl Santos and Sarah Mehri
+ * Kids Learn Website
+ * Version 1.0
+ * Load JSON-encoded data from the server using a GET HTTP request.
+ * loops through the requested result, builds an div,
+ * and appends it to the showShape id.
+ */
+
 window.onload = function() {
     $.getJSON("/328/KidsLearn/scripts/shapes.json", function (result) {
         //alert(result);

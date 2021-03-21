@@ -1,3 +1,10 @@
+/**
+ * Blezyl Santos and Sarah Mehri
+ * Kids Learn Website
+ * Version 1.0
+ * creating a shape, fruit or animal by using a mouse on canvas
+ */
+
 //https://stackoverflow.com/questions/2368784/draw-on-html5-canvas-using-a-mouse
 let canvas, ctx, flag = false,
 prevX = 0,
