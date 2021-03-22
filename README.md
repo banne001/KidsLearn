@@ -12,6 +12,7 @@ A website that helps kids learn basics such as shapes, animals, and fruits. Depe
 :heavy_check_mark: Routes all URLs and leverages a templating language using Fat-Free framework
 
   * All routes are in the index.php and leverages a templating language using Fat-Free Framework 
+
 :heavy_check_mark: Has a clearly defined database layer using PDO and prepared statements. You should have at least two related tables.
 
 :heavy_check_mark: Data can be viewed and added.
