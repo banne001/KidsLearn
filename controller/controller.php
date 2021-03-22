@@ -134,6 +134,8 @@ class Controller {
                 } else {
                     $this->_f3->set('errors["type"]', "Stop Spoofing");
                 }
+            } else {
+                $this->_f3->set('errors["type"]', "Required");
             }
             //var_dump($_SESSION);
             if(empty($this->_f3->get('errors'))) {
@@ -142,6 +144,9 @@ class Controller {
                 $this->_f3->reroute('/createFinish');
             }
         }
+        $this->_f3->set('oname', isset($oname) ? $oname: "");
+        $this->_f3->set('typePicked', isset($type) ? $type: "");
+
 
         $this->_f3->set("types", $dataLayer->getTypes());
         //creating a new view using the Template constructor

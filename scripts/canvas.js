@@ -113,3 +113,22 @@ function findxy(res, e) {
         }
     }
 }
+//Validate Image
+let formSignUp = document.getElementById("create");
+formSignUp.onsubmit = validateImage;
+
+/**
+ * Validates the Image extension to make sure it is an image
+ * @returns {boolean} true if file is an image, false otherwise
+ */
+function validateImage(){
+    let fileName = document.querySelector('#fileToUpload').value;
+    let regex = new RegExp('[^.]+$');
+    let extensions = ["jpg", "png", "jpeg"];
+    let extension = fileName.match(regex)[0];
+    console.log(extension);
+    if(!extensions.includes(extension)){
+        document.getElementById("errExt").classList.remove("d-none");
+        return false;
+    }
+}

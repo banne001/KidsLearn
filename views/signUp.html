@@ -23,10 +23,11 @@
     <div class="mx-auto mt-5 p-5 grey w-50 w-sm-100">
         <h1>Sign Up!</h1>
         <hr>
-        <form action="#" method="post">
+        <form action="#" method="post" id="signUp">
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" class="form-control" name="username" id="username" aria-describedby="username" placeholder="Enter Username" value="{{ @username }}">
+                <span class="d-none text-danger" id="errUsername">Please enter Username. Only letters and no space. </span>
                 <span class="text-danger"><check if="{{ isset(@errors['user']) }}">
                             {{ @errors['user'] }}
                 </check></span>
@@ -34,6 +35,7 @@
             <div class="form-group">
                 <label for="fname">First Name</label>
                 <input type="text" class="form-control" name="fname" id="fname" aria-describedby="name" placeholder="Enter First Name" value="{{ @fname }}">
+                <span class="d-none text-danger" id="errFirst">First Name cannot be blank and must contain only characters</span>
                 <span class="text-danger"><check if="{{ isset(@errors['fname']) }}">
                             {{ @errors['fname'] }}
                         </check></span>
@@ -41,6 +43,7 @@
             <div class="form-group">
                 <label for="lname">Last Name</label>
                 <input type="text" class="form-control" name="lname" id="lname" aria-describedby="name" placeholder="Enter Last Name" value="{{ @lname }}">
+                <span class="d-none text-danger" id="errLast">Last Name cannot be blank and must contain only characters</span>
                 <span class="text-danger"><check if="{{ isset(@errors['lname']) }}">
                             {{ @errors['lname'] }}
                         </check></span>
@@ -48,6 +51,7 @@
             <div class="form-group">
                 <label for="username">Age</label>
                 <input type="text" class="form-control" name="age" id="age" aria-describedby="age" placeholder="Enter Age" value="{{ @age }}">
+                <span class="d-none text-danger" id="errAge">Please enter age under 118</span>
                 <span class="text-danger"><check if="{{ isset(@errors['age']) }}">
                             {{ @errors['age'] }}
                         </check></span>
@@ -55,6 +59,7 @@
             <div class="form-group">
                 <label for="grade">Grade</label>
                 <input type="text" class="form-control" name="grade" id="grade" aria-describedby="grade" placeholder="Enter Grade" value="{{ @grade }}">
+                <span class="d-none text-danger" id="errGrade">Please enter Grade under 12</span>
                 <span class="text-danger"><check if="{{ isset(@errors['grade']) }}">
                             {{ @errors['grade'] }}
                         </check></span>
@@ -62,13 +67,15 @@
             <div class="form-group">
                 <label for="password">Password</label>
                 <input type="password" class="form-control" id="password" name="password" placeholder="Password" value="{{ @password }}">
+                <span class="d-none text-danger" id="errPassword">Please enter Password with at least 8 characters</span>
                 <span class="text-danger"><check if="{{ isset(@errors['password']) }}">
                             {{ @errors['password'] }}
                         </check></span>
             </div>
             <div class="form-group">
                 <label for="cpassword">Confirm Password</label>
-                <input type="password" class="form-control" id="cpassword" name="cpassword" placeholder="Confrim Password" value="{{ @cpassword }}">
+                <input type="password" class="form-control" id="cpassword" name="cpassword" placeholder="Confirm Password" value="{{ @cpassword }}">
+                <span class="d-none text-danger" id="errCPassword">Please enter same Password Again</span>
                 <span class="text-danger"><check if="{{ isset(@errors['cpassword']) }}">
                             {{ @errors['cpassword'] }}
                         </check></span>
@@ -96,6 +103,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<script src="scripts/validationSignUp.js"></script>
 
 </body>
 </html>

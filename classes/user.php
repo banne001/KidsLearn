@@ -35,14 +35,6 @@ class User{
         $this->_isPro = $_isPro;
     }
 
-    /**Setting the password for user
-     * @param mixed|string $passwd
-     */
-    public function setPasswd($passwd)
-    {
-        $this->_passwd = $passwd;
-    }
-
     /**Getting the username of user
      * @return mixed username of user
      */
@@ -123,20 +115,28 @@ class User{
         $this->_grade = $grade;
     }
 
-    /** Getting the user, to check for proUser
-     * @return mixed boolean of proUser checkbox
-     */
-    public function getIsPro()
-    {
-        return $this->_isPro;
-    }
-
     /** Getting the password for user
      * @return mixed|string for user
      */
     public function getPasswd()
     {
         return $this->_passwd;
+    }
+
+    /**Setting the password for user
+     * @param mixed|string $passwd
+     */
+    public function setPasswd($passwd)
+    {
+        $this->_passwd = $passwd;
+    }
+
+    /** Getting the user, to check for proUser
+     * @return mixed boolean of proUser checkbox
+     */
+    public function getIsPro()
+    {
+        return $this->_isPro;
     }
 
     /**Setting if the user wanted the proUser account

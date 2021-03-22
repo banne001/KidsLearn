@@ -53,13 +53,14 @@
                 <button class="btn btn-secondary" id="clr" onclick="erase()">Clear</button>
             </div>
             <div class="col justify-content-center p-0 m-2">
-                <form action="#" method="post" enctype="multipart/form-data">
+                <form action="#" method="post" enctype="multipart/form-data" id="create">
 
                     <br>
                     <h5>Upload your Drawing/Picture!</h5>
                     <div class="row m-3">
                         <input type="file" name="fileToUpload" id="fileToUpload">
                         <br>
+                        <span class="d-none text-danger" id="errExt">Invalid File type</span>
                         <span class="text-danger"><check if="{{ isset(@errors['pics']) }}">
                     {{ @errors['pics'] }}
                 </check></span>

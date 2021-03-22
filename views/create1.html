@@ -24,18 +24,20 @@
     <div class="container grey p-5">
         <h2 class="p-3 text-center">Name It</h2>
         <hr>
-        <form action="#" method="post">
+        <form action="#" method="post" id="create">
         <div class="row px-5 pt-2">
             <div class="col-6">
                 <h5>What did you draw?</h5>
                 <repeat group="{{ @types }}" value="{{ @type }}">
                     <div class="form-check mr-3">
                         <label class="form-check-label" for="{{@type}}">
-                            <input class="form-check-input" type="radio" name="type" id="{{@type}}" value="{{@type}}">
+                            <input class="form-check-input" type="radio" name="type" id="{{@type}}" value="{{@type}}"
+                            <check if="{{ @typePicked == @type }}">checked</check>>
                             {{@type}}
                         </label>
                     </div>
                 </repeat>
+                <span class="d-none text-danger" id="errType">Please pick a type </span>
                 <span class="text-danger"><check if="{{ isset(@errors['type']) }}">
                             {{ @errors['type'] }}
                         </check></span>
@@ -44,6 +46,7 @@
                 <div class="form-group">
                     <label for="oname">Name: </label>
                     <input type="text" class="form-control" name="oname" id="oname" aria-describedby="fname" placeholder="Enter Name" value="{{ @oname }}">
+                    <span class="d-none text-danger" id="errName">Please enter Name</span>
                     <span class="text-danger"><check if="{{ isset(@errors['oname']) }}">
                             {{ @errors['oname'] }}
                         </check></span>
@@ -71,7 +74,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-<script src="scripts/canvas.js"></script>
+<script src="scripts/validationCreate.js"></script>
 
 </body>
 </html>
