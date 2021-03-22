@@ -4,7 +4,8 @@ A website that helps kids learn basics such as shapes, animals, and fruits. Depe
 :heavy_check_mark: Separates all database/business logic using the MVC pattern.
   * Business logic and database under model folder
   * All HTML files under views folder
-  * Routes to all the html files under the controller folder
+  * Routes to all the html files under the index.php
+  * index.php calls function in Controller to get data from model and return views.
   * Classes under classes folder
   * JSON and JavaScripts under scripts
 
@@ -28,7 +29,7 @@ A website that helps kids learn basics such as shapes, animals, and fruits. Depe
   * User and ProUser sign up, and Creation form has full validation on client through JavaScript and server side through PHP.
 
 :heavy_check_mark: All code is clean, clear, and well-commented. DRY (Don't Repeat Yourself) is practiced.
-  * All functions and files are all commented. 
+  * All functions and files are commented. 
 
 ## UML Class Diagram
   ![Screen Shot 2021-03-22 at 12 40 51 AM](https://user-images.githubusercontent.com/58874516/111955837-44994900-8aa7-11eb-9ecb-d9d7b9268365.png)
