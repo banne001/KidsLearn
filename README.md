@@ -12,9 +12,9 @@ A website that helps kids learn basics such as shapes, animals, and fruits. Depe
 
   * All routes are in the index.php and leverages a templating language using Fat-Free Framework 
 :heavy_check_mark: Has a clearly defined database layer using PDO and prepared statements. You should have at least two related tables.
-  * Database layer uses PDO and prepared statements to add, retrive, and delete from the database. User and Creation table are related.
 
 :heavy_check_mark: Data can be viewed and added.
+  * Database layer uses PDO and prepared statements to add, retrive, and delete from the database. User and Creation table are related.
 
 :heavy_check_mark: Has a history of commits from both team members to a Git repository. Commits are clearly commented. 
 
