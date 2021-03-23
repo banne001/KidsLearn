@@ -10,15 +10,16 @@ A website that helps kids learn basics such as shapes, animals, and fruits. Depe
   * JSON and JavaScripts under scripts
 
 :heavy_check_mark: Routes all URLs and leverages a templating language using Fat-Free framework
-
   * All routes are in the index.php and leverages a templating language using Fat-Free Framework 
 
 :heavy_check_mark: Has a clearly defined database layer using PDO and prepared statements. You should have at least two related tables.
-
+  * All database layer is under model in data-layer.php. kidUser and creations are the related table(one to many relationship).
+ 
 :heavy_check_mark: Data can be viewed and added.
   * Database layer uses PDO and prepared statements to add, retrive, and delete from the database. User and Creation table are related.
 
 :heavy_check_mark: Has a history of commits from both team members to a Git repository. Commits are clearly commented. 
+  * True
 
 :heavy_check_mark: Uses OOP, and defines multiple classes, including at least one inheritance relationship.
   * 3 classes. User, ProUser, and creation. ProUser extends User and contains all fields such as name, grade, username, and password. Creation contains fields such as name, description, type, and image to hold any creation made by user. 
