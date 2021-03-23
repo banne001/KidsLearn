@@ -16,19 +16,19 @@ A website that helps kids learn basics such as shapes, animals, and fruits. Depe
   * All database layer is under model in data-layer.php. kidUser and creations are the related table(one to many relationship).
  
 :heavy_check_mark: Data can be viewed and added.
-  * Database layer uses PDO and prepared statements to add, retrive, and delete from the database. User and Creation table are related.
+  * Database layer uses PDO and prepared statements to add, retrieve, and delete from the database. 
 
 :heavy_check_mark: Has a history of commits from both team members to a Git repository. Commits are clearly commented. 
   * True
 
 :heavy_check_mark: Uses OOP, and defines multiple classes, including at least one inheritance relationship.
-  * 3 classes. User, ProUser, and creation. ProUser extends User and contains all fields such as name, grade, username, and password. Creation contains fields such as name, description, type, and image to hold any creation made by user. 
+  * 3 classes. User, ProUser, and creation. User contains all fields such as name, grade, username, and password. ProUser extends User and contains all fields from user and subject. Creation contains fields such as name, description, type, and image to hold any creation made by user. 
 
 :heavy_check_mark: Contains full Docblocks for all PHP files and follows PEAR standards. 
   * All PHP files contains DocBlock and Follows Pear Standards. 
 
 :heavy_check_mark: Has full validation on the client side through JavaScript and server side through PHP.
-  * User and ProUser sign up, and Creation form has full validation on client through JavaScript and server side through PHP.
+  * User and ProUser sign up, and Creation form has full validation on client through JavaScript under scripts folder and server side through PHP.
 
 :heavy_check_mark: All code is clean, clear, and well-commented. DRY (Don't Repeat Yourself) is practiced.
   * All functions and files are commented. 
