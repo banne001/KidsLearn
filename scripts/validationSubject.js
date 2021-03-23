@@ -27,7 +27,7 @@ function validateSubject(){
 
     let subject = document.getElementById("subject").value;
     let subjects = ["math", "english", "science", "history", "business", "social studies", "psychology", "economics", "art", "theater", "music", "language arts", "home economics"];
-    if(!subjects.includes(subject)){
+    if(!subjects.includes(subject.toLowerCase())){
         document.getElementById("errSubject").classList.remove("d-none");
         return false;
     }
